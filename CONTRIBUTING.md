@@ -27,4 +27,4 @@ MLX-Spark is pre-alpha. The most useful contributions right now make the eventua
 
 ## License note
 
-The project license has not yet been selected. Please do not submit a contribution until you are comfortable with the repository owner deciding and publishing the applicable contribution and distribution terms. Existing notices and third-party licenses must remain intact.
+MLX-Spark’s original code is distributed under the [Apache License 2.0](LICENSE). By submitting a pull request, you agree that your contribution is your original work or that you have the right to submit it, and you license it under Apache-2.0. Existing notices and third-party licenses must remain intact.

@@ -7,6 +7,7 @@ name = "mlx-spark-scaffold"
 version = "0.0.0.dev0"
 description = "Honest, executable engineering scaffold for an independent single-Spark MLX-like framework"
 readme = "README.md"
+license = {text = "Apache-2.0"}
 requires-python = ">=3.11"
 dependencies = []
 

@@ -53,5 +53,5 @@ Baseline PyTorch/Transformers/MLX живёт в отдельном oracle env. �
 ## Название и лицензия
 
 `MLX-Spark` — рабочее имя. Проверка имени пакета/товарного обозначения до публикации — отдельный release вопрос.
-Выбор лицензии нового кода остаётся за владельцем; не приписывать проект Apple/NVIDIA endorsement.
+Оригинальный код проекта распространяется под Apache-2.0; не приписывать проект Apple/NVIDIA endorsement.
 Исходные MIT/Apache и прочие notices сохраняются согласно audited imported components. [S09]

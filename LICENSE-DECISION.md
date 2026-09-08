@@ -1,9 +1,16 @@
 # Лицензия и происхождение
 
-Лицензия будущего самостоятельного проекта и условия публичного распространения нового кода остаются решением владельца.
-В этой доставке не присваивается чужое авторство и не заявляется Apple/NVIDIA endorsement.
-Reference implementation и scaffold написаны для данного пакета; математические формулы/shape facts сверены с sources.
-Полный upstream MLX source и model weights не включены. При импорте обязательны исходные LICENSE/NOTICE и source SHA.
+## Решение владельца
 
-Рекомендация к рассмотрению: MIT для нового framework-кода, но это **не принятое юридическое решение** и не разрешение
-выбросить лицензии Apache/BSD/vendor dependencies. Перед публикацией провести per-component license/SBOM review.
+Оригинальный код MLX-Spark распространяется под [Apache License 2.0](LICENSE). Это относится только к правам,
+которыми распоряжаются авторы MLX-Spark; лицензия не создаёт affiliation или endorsement со стороны Apple, NVIDIA
+или Qwen и не меняет условия сторонних компонентов.
+
+## Происхождение и third-party obligations
+
+Reference implementation и scaffold написаны для этого проекта; математические формулы и shape facts сверяются с
+источниками. Полный upstream MLX source и model weights не включены. При любом будущем импорте необходимо сохранить
+оригинальные LICENSE/NOTICE, зафиксировать immutable source SHA и провести per-component license/SBOM review.
+
+В частности, возможный импорт исходников MLX сохраняет его опубликованную MIT-лицензию и notices. Нельзя заменять,
+удалять или переобъявлять лицензии Apache/BSD/vendor dependencies одним общим файлом LICENSE.

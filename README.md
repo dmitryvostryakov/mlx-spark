@@ -74,8 +74,8 @@ The detailed engineering plan is in [`docs/MASTER_PLAN.md`](docs/MASTER_PLAN.md)
 
 This repository is at a pre-alpha foundation stage. Documentation fixes, reproducible bug reports, tests, and narrowly scoped implementation proposals are welcome. Please read [`CONTRIBUTING.md`](CONTRIBUTING.md), [`AGENTS.md`](AGENTS.md), and the relevant task card before opening a pull request.
 
-## Project status and licensing
+## Project status and license
 
 MLX-Spark is a working project name and is not affiliated with or endorsed by Apple, NVIDIA, or Qwen. Model weights and proprietary NVIDIA binaries are not distributed here.
 
-No license for the project’s original code has been selected yet. Until the repository owner publishes one, normal copyright restrictions apply; do not assume permission to reuse, redistribute, or contribute code under a particular open-source license. See [`LICENSE-DECISION.md`](LICENSE-DECISION.md) and [`NOTICE.md`](NOTICE.md).
+The project’s original code is licensed under [Apache License 2.0](LICENSE). Third-party material retains its own license and notice requirements; see [`LICENSE-DECISION.md`](LICENSE-DECISION.md) and [`NOTICE.md`](NOTICE.md).

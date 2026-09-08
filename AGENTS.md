@@ -92,7 +92,7 @@ known failures, hypotheses, current SHA и next 1–3 tasks. Использов�
 Блокирует только соответствующую работу: missing hardware/access, unresolved source mismatch, memory safety failure,
 unknown license obligation, потребность в системном изменении. Сохранить reproducer; выполнять независимые разрешённые задачи.
 Не спрашивать снова уже решённые scope/model/TP questions. Не обещать результат в фоне.
-Публиковать GitHub/PyPI, выбирать окончательную лицензию проекта или загружать private данные наружу — только с разрешения владельца.
+Публиковать GitHub/PyPI, менять лицензию проекта или загружать private данные наружу — только с разрешения владельца.
 
 ## 13. Определение done
 

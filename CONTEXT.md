@@ -62,7 +62,12 @@ Replayable validator, четыре boundary tests и full scaffold (64 Python + 
 
 Actual CUDA toolkit version (nvcc unavailable) и cuDNN version; exact immutable HF model revision; production API
 inventory и package-name availability; CUDA compile/runtime correctness; Qwen quality/speed;
-конкретный performance target до baseline; окончательная лицензия нового проекта.
+конкретный performance target до baseline.
+
+## Лицензия
+
+Оригинальный код MLX-Spark распространяется под Apache-2.0. Это не отменяет обязательства сохранить отдельные
+лицензии и notices для любого будущего импортированного кода; точная provenance-policy — `LICENSE-DECISION.md`.
 
 ## Следующее
 
