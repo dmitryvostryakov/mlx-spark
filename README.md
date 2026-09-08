@@ -17,6 +17,16 @@ MLX-Spark aims to be a complete, independent MLX-like development environment fo
 
 The project starts with a single visible GB10 GPU in a DGX Spark. Distributed execution and TP=2 are deliberately deferred until the single-node framework is complete and hardware-validated. Qwen3.8-27B is the first large-model acceptance workload, not the framework's entire scope.
 
+## Why we built this
+
+We built MLX-Spark because experimenting with a new NVIDIA platform should not force a choice between an opaque production stack and a pile of disconnected CUDA prototypes. We wanted one coherent place to understand the whole path: from an array and its gradient to memory ownership, kernel dispatch, model state, training, and a real large-model workload.
+
+DGX Spark makes that question especially interesting. It is a compact Arm + GB10 system with shared physical memory, but shared memory does not remove the hard parts: allocation semantics, synchronization, layouts, numerical precision, and device execution still need explicit, testable contracts. A familiar Python API is valuable only when those contracts remain visible and correct.
+
+MLX-Spark is our attempt to build that path in the open. Rather than hiding another tensor framework behind an MLX-like interface, we are building an independent runtime whose behavior can be inspected, tested, and improved from the bottom up. The point is not to declare a replacement for mature frameworks. It is to earn a small, trustworthy foundation on NVIDIA hardware and expand it only when the evidence supports it.
+
+Open development is part of the design. Every meaningful claim should have a reproducer, a test, or a recorded measurement; every unsupported feature should fail clearly instead of silently falling back. That makes the repository useful even before it is feature-complete: contributors can see the real constraints, challenge the design, and help turn a scaffold into a dependable framework.
+
 ## What is available today
 
 | Available and tested on CPU | Not implemented or validated yet |
