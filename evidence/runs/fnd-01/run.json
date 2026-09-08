@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "task": "FND-01",
+  "kind": "scaffold_cpu",
+  "base_delivery": {
+    "zip_sha256": "c5a43d9403dc42b7c2d8e88ed754bc087aecc337931515692c69b3f3da37604e",
+    "git_commit": "e12c8cbe002b5c44db53ccd2c04c156ecebfe68c"
+  },
+  "implementation_commit": "9ec1195d4080cc822ce7d73f5eb17a3410168d29",
+  "hardware": {
+    "execution_host": {
+      "system": "Darwin",
+      "machine": "arm64",
+      "selected_dgx_spark": false
+    },
+    "gpu": "not_queried",
+    "hardware_validation": "NOT_PERFORMED"
+  },
+  "toolchain": {
+    "python": "CPython 3.14.3",
+    "cmake": "4.3.2",
+    "ninja": "1.13.2",
+    "cxx": "AppleClang 21.0.0"
+  },
+  "commands": [
+    {
+      "argv": ["python3", "tools/check_integrity.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/integrity.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-c", "from mlx_spark import core; core.array([1, 2])"],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-01/native-core-baseline.stderr.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-01/check-local.stderr.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-01/check-local-attempt-2.stderr.log"
+    },
+    {
+      "argv": ["python3", "-c", "import sys; assert sys.version_info >= (3, 11), sys.version"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/remediation-first-session-python.stdout.log"
+    },
+    {
+      "argv": ["python3", "tools/check_integrity.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/remediation-first-session-integrity.stdout.log"
+    },
+    {
+      "argv": ["python3", "tools/validate_plan.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/remediation-first-session-plan.stdout.log"
+    },
+    {
+      "argv": ["python3", "tools/next_task.py", "--agent", "Sol"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/remediation-first-session-next.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "mlx_spark", "status"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/remediation-first-session-status.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "mlx_spark", "memory-estimate", "--config", "configs/models/qwen3.8-27b.config.snapshot.json", "--tokens", "32768"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/remediation-first-session-memory.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "tests/test_check_local.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/remediation-targeted.stdout.log"
+    },
+    {
+      "argv": ["env", "MLX_SPARK_PYTHON=false", "bash", "scripts/check_local.sh"],
+      "exit_code": 2,
+      "log_path": "evidence/runs/fnd-01/remediation-version-guard.stderr.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/remediation-check-local.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "tests/test_honesty_safety.py::test_shareable_evidence_has_no_junit_hostname_metadata"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/remediation2-hostname-test.stdout.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/remediation2-check-local.stdout.log"
+    },
+    {
+      "argv": ["rg", "-n", "hostname=\"|MacBook-Pro\\.local", "evidence"],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-01/remediation2-hostname-scan.stdout.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/final-integration-check-local.stdout.log"
+    },
+    {
+      "argv": ["python3", "tools/next_task.py", "--agent", "Sol"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-01/final-next-task.stdout.log"
+    }
+  ],
+  "observations": [
+    "The delivered manifest was verified before intentional edits: 233 entries, no errors.",
+    "The original local-check harness failed because bare python resolved to Python 2.7, which could not parse the Python 3 plan validator.",
+    "The whitespace-only plan-validator change from the first implementation was reverted; the base validator is valid under supported Python 3.",
+    "The final harness defaults to python3, accepts an MLX_SPARK_PYTHON override, and rejects interpreters older than Python 3.11 before running the suite.",
+    "Mandatory startup instructions now select python3 and include an explicit Python 3.11+ check.",
+    "The final applicable suite passed 49 Python tests and 1 C++ host contract test with no skips reported.",
+    "Two task-generated JUnit XML files were discarded, not rewritten, after independent review found that the tools embedded a forbidden hostname; safe raw text logs remain.",
+    "A delivered validation JUnit carrying generic hostname metadata was also removed from the current tree after strict re-review; its bytes remain recoverable from the immutable ZIP/base commit and the safe validation/pytest.txt report remains.",
+    "After approved review and final state integration, the only ready Sol task is FND-02; no FND-02 command was executed.",
+    "The native tensor core remains intentionally unavailable and raises NativeCoreUnavailable.",
+    "The 32768-token memory result is an estimate only and its fit verdict remains UNKNOWN."
+  ],
+  "unrun": [
+    "Selected DGX Spark read-only inventory (FND-02)",
+    "CUDA compilation or execution",
+    "Qwen weights, inference, vision, MTP, LoRA or QLoRA",
+    "Framework-native arrays, autodiff, compile, nn, optimizers or training",
+    "Source resolution requiring network opt-in",
+    "Any TP2, NCCL, SSH, QSFP or second-node work"
+  ],
+  "submission_evidence": {
+    "previous_state_commit": "6ab17005fa22d0f989f1eb23a4c7ab0cd2dcac82",
+    "previous_hash_manifest": "evidence/runs/fnd-01/SUBMISSION.sha256",
+    "reviewed_state_commit": "455f84b4375ebf0be8654e6c55f1591876442532",
+    "current_hash_manifest": "evidence/runs/fnd-01/SUBMISSION-2.sha256",
+    "final_hash_manifest": "evidence/runs/fnd-01/FINAL.sha256"
+  },
+  "review": {
+    "status": "approved",
+    "reviewer_role": "Luna",
+    "evidence": [
+      "evidence/runs/fnd-01/REVIEW.md",
+      "evidence/runs/fnd-01/REVIEW_FINAL.md",
+      "evidence/runs/fnd-01/REVIEW_APPROVAL.md"
+    ],
+    "remediation_commit": "9ec1195d4080cc822ce7d73f5eb17a3410168d29",
+    "reviewed_submission": "455f84b4375ebf0be8654e6c55f1591876442532",
+    "re_review": "approved",
+    "approved_at": "2026-09-08T07:57:14Z"
+  }
+}

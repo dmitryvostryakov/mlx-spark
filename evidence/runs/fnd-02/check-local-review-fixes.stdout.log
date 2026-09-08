@@ -1,0 +1,24 @@
+{"tasks": 91, "acyclic": true, "single_spark": 85, "deferred": 6}
+...........................................................              [100%]
+59 passed in 0.58s
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: <redacted-home>/Coding_Projects/MLX-DGX/mlx-spark-handoff/build/host-debug
+ninja: no work to do.
+Test project <redacted-home>/Coding_Projects/MLX-DGX/mlx-spark-handoff/build/host-debug
+    Start 1: host_contracts
+1/1 Test #1: host_contracts ...................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.01 sec
+{
+  "stage": "scaffold_only",
+  "native_core": false,
+  "qwen_inference": false,
+  "framework_training": false,
+  "cuda_validated": false,
+  "tp2": "deferred"
+}
+
+Local scaffold checks only. No MLX native, CUDA, Qwen or GPU-training gate has passed.

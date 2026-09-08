@@ -1,0 +1,3 @@
+PASS: no installed mlx, torch or numpy in isolated runtime.
+Observed deliberate unavailable native core: NativeCoreUnavailable
+PASS: unimplemented native execution fails explicitly.

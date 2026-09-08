@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task": "FND-02",
+  "selected_spark_label": "DGX2",
+  "inventory_collected_at": "2026-09-08T08:36:38.589884+00:00",
+  "scope": "single_spark_foundation_only",
+  "status": "approved_for_single_spark_foundation",
+  "approved_at": "2026-09-08T08:54:22Z",
+  "reviewed_candidate": "7b0c1421b33c8606db77f68a2aa035c298260539",
+  "reviewer_role": "Luna",
+  "weights_download_authorized": false,
+  "memory": {
+    "observed_total_bytes": 130663165952,
+    "observed_mem_available_bytes": 121876148224,
+    "finite_cgroup_limit_observed": false,
+    "effective_available_bytes": 121876148224,
+    "system_reserve_bytes": 34359738368,
+    "project_working_set_cap_bytes": 85899345920,
+    "headroom_after_project_cap_bytes": 35976802304,
+    "swap_total_bytes": 0,
+    "basis": "MemAvailable because the current cgroup hierarchy has no finite memory limit"
+  },
+  "disk": {
+    "scope": "selected_working_filesystem",
+    "observed_free_bytes": 625400561664,
+    "minimum_free_floor_bytes": 274877906944,
+    "project_total_cap_bytes": 274877906944,
+    "headroom_after_project_cap_bytes": 350522654720,
+    "build_cache_cap_bytes": 103079215104
+  },
+  "build": {
+    "max_parallel_jobs": 4,
+    "reason": "conservative foundation default until measured per-job peak memory exists"
+  },
+  "guards": {
+    "recheck_before_large_allocation_or_download": true,
+    "abort_if_memory_reserve_would_be_crossed": true,
+    "abort_if_disk_free_floor_would_be_crossed": true,
+    "automatic_system_tuning": false,
+    "automatic_cache_prune": false,
+    "large_weights_require_separate_authorization_and_budget": true
+  },
+  "notes": [
+    "The 80 GiB project memory cap leaves 33.51 GiB of the observed MemAvailable value unused.",
+    "The 256 GiB project disk cap leaves 326.45 GiB of the observed free space unused.",
+    "GPU memory fields are unavailable under the observed UMA reporting path; CPU and GPU capacity are not added.",
+    "These are operational caps, not capacity or performance guarantees."
+  ]
+}

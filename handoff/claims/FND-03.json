@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "task": "FND-03",
+  "role": "Sol",
+  "reviewer": "Luna",
+  "claimed_at": "2026-09-08T09:02:22Z",
+  "base_commit": "557961109302be25dd5393c6ac6d17e1b6750a2c",
+  "selected_spark_label": "DGX2",
+  "status": "in_progress",
+  "network_authorization": "explicit_user_approval",
+  "weights_download_authorization": "explicit_user_approval_subject_to_exact_revision_and_budget_preflight",
+  "scope": "Resolve and audit immutable source/model metadata; inspect exact Qwen cache; download only exact reviewed artifacts within budget; no execution, install, system change, second node, or TP2."
+}

@@ -1,0 +1,117 @@
+{
+  "observed_date": "2026-09-08",
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Qwen3.8-27B configuration",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/config.json",
+      "scope": "exact-revision architecture facts; raw bytes hashed; normalized fixture structurally equal",
+      "source_type": "primary"
+    },
+    {
+      "id": "S02",
+      "title": "Qwen3.8-27B official model card",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/tree/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "scope": "model identity/multimodal description/license indication; no own performance validation",
+      "source_type": "primary"
+    },
+    {
+      "id": "S03",
+      "title": "MLX official repository",
+      "url": "https://github.com/ml-explore/mlx",
+      "scope": "API families, CUDA presence, project scope",
+      "source_type": "primary"
+    },
+    {
+      "id": "S04",
+      "title": "MLX candidate immutable commit",
+      "url": "https://github.com/ml-explore/mlx/commit/365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5",
+      "scope": "full SHA observed; starting-source candidate, not hardware-certified build",
+      "source_type": "primary"
+    },
+    {
+      "id": "S05",
+      "title": "NVIDIA DGX Spark hardware guide",
+      "url": "https://docs.nvidia.com/dgx/dgx-spark/hardware.html",
+      "scope": "memory/platform facts; actual local system still must be inventoried",
+      "source_type": "primary"
+    },
+    {
+      "id": "S06",
+      "title": "NVIDIA DGX Spark CUDA porting guide",
+      "url": "https://docs.nvidia.com/dgx/dgx-spark-porting-guide/porting/cuda.html",
+      "scope": "allocation access/GPUDirect caveats; TP2 deferred",
+      "source_type": "primary"
+    },
+    {
+      "id": "S07",
+      "title": "NVIDIA compute capability table",
+      "url": "https://developer.nvidia.com/cuda/gpus",
+      "scope": "GB10 compute capability12.1; probe local hardware as well",
+      "source_type": "primary"
+    },
+    {
+      "id": "S08",
+      "title": "MLX official install/API documentation",
+      "url": "https://ml-explore.github.io/mlx/build/html/install.html",
+      "scope": "installation docs/API surface; docs version and main source may differ",
+      "source_type": "primary"
+    },
+    {
+      "id": "S09",
+      "title": "MLX published LICENSE",
+      "url": "https://raw.githubusercontent.com/ml-explore/mlx/365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5/LICENSE",
+      "scope": "exact-revision MIT notice; preserve exact license upon source import",
+      "source_type": "primary"
+    },
+    {
+      "id": "S10",
+      "title": "MLX-LM Gated Delta implementation",
+      "url": "https://raw.githubusercontent.com/ml-explore/mlx-lm/7fb4be44d560e5b74595210f83cb6003a57e52a7/mlx_lm/models/gated_delta.py",
+      "scope": "exact-revision source-level recurrence/mask/scale reference; not a runtime dependency",
+      "source_type": "primary"
+    },
+    {
+      "id": "S11",
+      "title": "MLX-LM Qwen3.5-family model source",
+      "url": "https://raw.githubusercontent.com/ml-explore/mlx-lm/7fb4be44d560e5b74595210f83cb6003a57e52a7/mlx_lm/models/qwen3_5.py",
+      "scope": "exact-revision reference for source audit; not proof of complete Qwen3.8 compatibility",
+      "source_type": "primary"
+    },
+    {
+      "id": "S12",
+      "title": "MLX official function transforms documentation",
+      "url": "https://ml-explore.github.io/mlx/build/html/usage/function_transforms.html",
+      "scope": "compositional transform design; must verify against pinned release",
+      "source_type": "primary"
+    },
+    {
+      "id": "S13",
+      "title": "MLX pinned CMakeLists",
+      "url": "https://raw.githubusercontent.com/ml-explore/mlx/365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5/CMakeLists.txt",
+      "scope": "exact source constraints including toolkit 13.1 exclusion; not hardware validation",
+      "source_type": "primary"
+    },
+    {
+      "id": "S14",
+      "title": "MLX CUDA CMakeLists",
+      "url": "https://raw.githubusercontent.com/ml-explore/mlx/365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5/mlx/backend/cuda/CMakeLists.txt",
+      "scope": "exact backend/dependency constraints; not a guarantee for SM 12.1 or any dtype",
+      "source_type": "primary"
+    },
+    {
+      "id": "S15",
+      "title": "Qwen exact model commit",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/commit/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "scope": "exact immutable revision metadata-audited; not model-runtime or weight-integrity validation",
+      "source_type": "primary"
+    },
+    {
+      "id": "S16",
+      "title": "CUDA runtime cudaDeviceProp documentation",
+      "url": "https://docs.nvidia.com/cuda/cuda-runtime-api/structcudaDeviceProp.html",
+      "scope": "API fields used by unvalidated device probe; no claim of execution",
+      "source_type": "primary"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "gate": "single_spark_v1",
+  "synthetic": true,
+  "hardware": null,
+  "implementation_commit": null,
+  "implementer": null,
+  "reviewer": null,
+  "checks": {
+    "source_and_toolchain_lock": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "independent_native_package": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "public_api_parity": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "cpu_cuda_semantics": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "autodiff_vjp_jvp_vmap_higher_order": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "lazy_compile_streams": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "memory_lifetime_oom": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "generic_training_checkpoint_resume": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "qwen_bf16_text_state": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "qwen_lora_qlora": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "qwen_quantization_quality": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "qwen_vision_video": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "qwen_mtp_state_rollback": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "numeric_and_security_regressions": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "single_node_performance_no_material_regression": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "clean_install_docs_examples": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    },
+    "independent_release_review": {
+      "status": "not_run",
+      "skipped": 0,
+      "artifacts": []
+    }
+  }
+}

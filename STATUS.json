@@ -1,0 +1,17 @@
+{
+  "bundle_version": "0.1",
+  "date": "2026-09-08",
+  "stage": "scaffold_only",
+  "native_framework": false,
+  "qwen_inference": false,
+  "framework_autodiff_training": false,
+  "cuda_code_included": true,
+  "cuda_compiled_here": false,
+  "hardware_validated": false,
+  "weights_included": false,
+  "full_upstream_source_included": false,
+  "tp2": "deferred",
+  "source_lock": "candidate; HF/oracle full pins intentionally unresolved",
+  "task_count": 91,
+  "tests_report": "evidence/BUNDLE_VALIDATION.md"
+}

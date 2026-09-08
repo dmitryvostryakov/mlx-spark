@@ -1,0 +1,1299 @@
+{
+  "schema_version": 1,
+  "role_labels_are_work_assignments_not_verified_model_capabilities": true,
+  "tasks": [
+    {
+      "id": "FND-01",
+      "title": "Зафиксировать одноузловой контракт и исходную точку",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "done",
+      "depends_on": [],
+      "implementation": "Прочитать AGENTS.md, CONTEXT.md, документы продукта и hand-off. Сверить scope: одна GPU одного Spark, только Qwen3.8-27B как первая большая модель. Выполнить CPU scaffold checks. Не открывать TP2.",
+      "acceptance": "Сохранены стартовый checkpoint и отчёт scaffold-тестов; явно указано, что runtime ещё не реализован.",
+      "evidence_dir": "evidence/runs/fnd-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "FND-02",
+      "title": "Инвентаризировать выбранный Spark без изменений системы",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "done",
+      "depends_on": [
+        "FND-01"
+      ],
+      "implementation": "Запустить doctor на локальном выбранном Spark. Собрать архитектуру, DGX OS, toolkit, compiler, driver, доступную память и свободное место для build/cache. Не собирать токены, IP, UUID или процессы; не SSH на второй узел.",
+      "acceptance": "Есть локальный обезличенный JSON; неизвестные параметры помечены unknown; согласованы безопасные бюджеты памяти и диска.",
+      "evidence_dir": "evidence/runs/fnd-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "FND-03",
+      "title": "Разрешить и проверить точные исходники",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "in_progress",
+      "depends_on": [
+        "FND-02"
+      ],
+      "implementation": "Разрешить source-lock.candidate.json через opt-in resolver. Проверить MIT notice, Qwen metadata, Transformers oracle, CUDA source constraints. Сравнить config snapshot с метаданными точной ревизии. Все изменения review отдельно.",
+      "acceptance": "Полные SHA, hash метаданных и независимый review; нет main/latest в исполняемом release-манифесте.",
+      "evidence_dir": "evidence/runs/fnd-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "FND-04",
+      "title": "Собрать неизменённый upstream baseline изолированно",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "FND-03"
+      ],
+      "implementation": "Собрать pinned MLX CUDA в отдельном prefix/venv только для baseline. Проверить актуальные CMake flags по pinned source, cuDNN и BLAS/LAPACK. Не заменять системный mlx и не делать pip install глобально.",
+      "acceptance": "Сборка и минимальный array forward зафиксированы на GB10 либо точная воспроизводимая build-блокировка; baseline не назван MLX-Spark.",
+      "evidence_dir": "evidence/runs/fnd-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "FND-05",
+      "title": "Импортировать проверенное ядро в собственную кодовую базу",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "FND-04"
+      ],
+      "implementation": "Материализовать checked-in upstream-derived source с лицензией, отдельным commit происхождения и хешами. Создать собственный target/library; не строить продукт поверх внешнего installed mlx. Не выполнять слепой global sed.",
+      "acceptance": "Происхождение каждого импортированного дерева прослеживается; проект собирается без исходного репозитория в соседнем каталоге.",
+      "evidence_dir": "evidence/runs/fnd-05/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "FND-06",
+      "title": "Создать независимые namespace и сборку",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "FND-05"
+      ],
+      "implementation": "Перенести Python imports на mlx_spark, настроить собственный _core и CMake export. Проверить nanobind type names, exception mapping, capsules, сериализацию, rpath. Внутренний C++ namespace можно сохранить с явным ABI boundary.",
+      "acceptance": "В чистом окружении без mlx/torch NumPy runtime product import работает; wheel не пишет mlx namespace; native dependency audit приложен.",
+      "evidence_dir": "evidence/runs/fnd-06/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "FND-07",
+      "title": "Заморозить API inventory и совместимость",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "FND-06"
+      ],
+      "implementation": "Извлечь точную поверхность API pinned MLX Python/C++ в изолированном oracle env. Сопоставить seed compatibility matrix, платформенные эквиваленты и deferred distributed. Не считать список примеров полным API.",
+      "acceptance": "Каждый публичный символ имеет категорию, тест, статус и объяснение applicability; миграция namespace документирована.",
+      "evidence_dir": "evidence/runs/fnd-07/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "CORE-01",
+      "title": "Массивы: владение, scalar и shape",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "FND-06"
+      ],
+      "implementation": "Перенести array ownership, shape/strides, contiguity, scalar и zero-sized semantics. Разграничить logical values и physical allocation. Проверить ошибки overflow и lifetime.",
+      "acceptance": "Набор property tests для scalar, empty, views, aliasing и out-of-bounds проходит на CPU и CUDA.",
+      "evidence_dir": "evidence/runs/core-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "CORE-02",
+      "title": "Типы данных и продвижение типов",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-01"
+      ],
+      "implementation": "Зафиксировать dtype promotion Python scalar/array, bool, integer overflow, FP16/BF16/FP32, complex и поддерживаемые wide types. Не молча сужать неподдерживаемый тип.",
+      "acceptance": "Таблица dtype promotion сопоставлена с baseline; unsupported выдаёт согласованную ошибку.",
+      "evidence_dir": "evidence/runs/core-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "CORE-03",
+      "title": "Индексирование и обновления",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-02"
+      ],
+      "implementation": "Срезы, gather/scatter, repeated indices, negative strides, masks, broadcast, array.at и копии. Семантика repeated indices соответствует pinned reference.",
+      "acceptance": "Рандомизированные тесты и VJP hooks для индексируемых операций; нет unsafe views.",
+      "evidence_dir": "evidence/runs/core-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "CORE-04",
+      "title": "Элементные операции и reductions",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-03"
+      ],
+      "implementation": "Арифметика, transcendental, NaN/Inf, reductions, накопление в согласованной точности, axis tuples и empty reductions.",
+      "acceptance": "CPU/CUDA parity и stress NaN/Inf; compiled/eager должны совпадать в зарегистрированных допусках.",
+      "evidence_dir": "evidence/runs/core-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "CORE-05",
+      "title": "Matmul и свёртки",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-04"
+      ],
+      "implementation": "Dense matmul, batched/broadcasted matmul, conv1d/2d/3d, groups, dilation и transpose conv на основе общего dispatch.",
+      "acceptance": "Корректность contiguous/strided layouts, odd/tail shapes и всех режимов, используемых Qwen/vision.",
+      "evidence_dir": "evidence/runs/core-05/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "CORE-06",
+      "title": "Нормы и attention primitives",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-05"
+      ],
+      "implementation": "Общие RMSNorm/LayerNorm, softmax/logsumexp, attention mask и GQA. No hidden q/k scale. Unit-offset norms только по модели.",
+      "acceptance": "Численные эталоны и supported shape/dtype inventory; совпадение при больших отрицательных logits.",
+      "evidence_dir": "evidence/runs/core-06/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "CORE-07",
+      "title": "Random и явное состояние RNG",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-06"
+      ],
+      "implementation": "Определить seed/key, split, reproducibility в eager/compile и save-resume. Не обещать bitwise CPU/GPU там, где алгоритмы различны.",
+      "acceptance": "Воспроизводимость в пределах одного согласованного backend/config и формальные межплатформенные допуски.",
+      "evidence_dir": "evidence/runs/core-07/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "CORE-08",
+      "title": "Linear algebra, FFT и остаток array API",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-07"
+      ],
+      "implementation": "Закрыть непройденные категории pinned API, включая linalg, FFT, sort/scan, complex. Имеющиеся библиотеки использовать с корректным ownership.",
+      "acceptance": "Ни одна общая API-категория не объявлена complete на основании только Qwen tests.",
+      "evidence_dir": "evidence/runs/core-08/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "CORE-09",
+      "title": "Interoperability и export",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-08"
+      ],
+      "implementation": "DLPack/NumPy bridge, CPU/device visibility, stream synchronization, export/import supported functions. Не отдавать host-доступ к невидимому device pointer.",
+      "acceptance": "Ownership, zero-copy/copy disclosure и producer/consumer lifetime tests; нет dangling capsule.",
+      "evidence_dir": "evidence/runs/core-09/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "CORE-10",
+      "title": "Аудит полноты общего ядра",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-09"
+      ],
+      "implementation": "Обновить exact API inventory после реализации; проверить пользовательскую неизвестную архитектуру на общих primitives.",
+      "acceptance": "Неиспользуемые Qwen операции также протестированы; parity release gate остаётся closed при незакрытых required символах.",
+      "evidence_dir": "evidence/runs/core-10/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "MEM-01",
+      "title": "Проверить реальные memory capabilities GB10",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "FND-04"
+      ],
+      "implementation": "Скомпилировать capability probe и минимальные visibility-тесты. Сопоставить cudaMalloc, host/pinned, managed и supported pageable доступы; не полагаться только на integrated flag.",
+      "acceptance": "Матрица capability/visibility с доказательствами и доступными allocation types; никаких выводов по nvidia-smi alone.",
+      "evidence_dir": "evidence/runs/mem-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "MEM-02",
+      "title": "Ввести явные allocation policies",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "MEM-01"
+      ],
+      "implementation": "Определить correctness-first выбор HOST/SHARED/DEVICE и documented synchronization. CPU/GPU logical array API не означает все allocation types CPU-readable.",
+      "acceptance": "CPU->GPU->CPU тесты values/lifetimes; отсутствие скрытых precision/device changes.",
+      "evidence_dir": "evidence/runs/mem-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "MEM-03",
+      "title": "Сделать stream-aware pool",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "MEM-02"
+      ],
+      "implementation": "Reuse после завершения stream events, alignment, bounded caching, accounting active/reserved/pending. Не очищать live buffers.",
+      "acceptance": "Stress разных streams, deferred free, view lifetime, repeated allocations и race tests.",
+      "evidence_dir": "evidence/runs/mem-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "MEM-04",
+      "title": "Лимиты, memory pressure и OOM",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "MEM-03"
+      ],
+      "implementation": "Считать бюджет с reserve, cgroup/memavailable где доступны, separate pool cached bytes. Выделения переводить в actionable OOM без kill системы. Никакого swap tuning.",
+      "acceptance": "Синтетические ограниченные OOM-тесты, recovery следующей операции, отсутствие leak; реальные большие прогоны только после budget.",
+      "evidence_dir": "evidence/runs/mem-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "MEM-05",
+      "title": "Загрузка и запись без пиковых копий",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "MEM-04"
+      ],
+      "implementation": "Streaming shards, conversion workspaces, mmap lifetime, alias source/destination защита; atomic checkpoint output.",
+      "acceptance": "Пиковая память и диск замерены; отказ перезаписать лениво отображённые input weights; частичный файл не выглядит завершённым.",
+      "evidence_dir": "evidence/runs/mem-05/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "MEM-06",
+      "title": "Профиль UMA access patterns",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "MEM-05"
+      ],
+      "implementation": "Малые reproducible измерения allocation/layout при одинаковой арифметике: GPU-hot weights, mixed CPU/GPU operations, cache reuse.",
+      "acceptance": "Политика выбрана по correctness+замерам; zero-copy magic и числа bandwidth не обещаются без evidence.",
+      "evidence_dir": "evidence/runs/mem-06/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "MEM-07",
+      "title": "Долговременный memory stress",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "MEM-06"
+      ],
+      "implementation": "Повторная загрузка/выгрузка, cancellation, train/infer transitions, долгие stateful сессии. Ограничить нагрузку явно.",
+      "acceptance": "Временной ряд active/reserved/RSS и high-water marks; нет монотонного необъяснённого роста.",
+      "evidence_dir": "evidence/runs/mem-07/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "EXEC-01",
+      "title": "Lazy graph и границы materialization",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-04"
+      ],
+      "implementation": "Сохранить динамическое построение, eval/async_eval и lifetime зависимостей. Метрики синхронизируются там, где обещают wall time.",
+      "acceptance": "Операции до eval не притворяются выполненными; Python scalar/item trigger документирован.",
+      "evidence_dir": "evidence/runs/exec-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "EXEC-02",
+      "title": "Streams, events и ошибки async",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "EXEC-01"
+      ],
+      "implementation": "Исполнить dependency ordering, thread ownership и delayed errors. Отдельно проверить исключения после launch.",
+      "acceptance": "Race/deterministic tests разных streams, безопасное разрушение context и понятные stack/error context.",
+      "evidence_dir": "evidence/runs/exec-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "EXEC-03",
+      "title": "Compile и ограничения специализации",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "EXEC-02"
+      ],
+      "implementation": "Определить tracing, shape specialization/cache keys и invalidation по dtype/layout/toolchain. Не реализовывать compile как identity decorator.",
+      "acceptance": "Есть измеримое fused/compiled исполнение и numerics parity; поддерживаемые dynamic-shape случаи явно проверены.",
+      "evidence_dir": "evidence/runs/exec-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "EXEC-04",
+      "title": "CUDA Graph capture после корректной eager базы",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "EXEC-03"
+      ],
+      "implementation": "Проверить допустимые allocations, адреса, state mutation, shape buckets и replay. Неподдерживаемое capture явно отключается, не меняя результат.",
+      "acceptance": "Replay stateful decode корректен после cache growth и отмены; graph cache ограничен.",
+      "evidence_dir": "evidence/runs/exec-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "EXEC-05",
+      "title": "Profiler hooks и numerical mode",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "EXEC-04"
+      ],
+      "implementation": "Добавить осмысленные operator/model ranges, sync timing, deterministic mode, TF32/fast-math/flush policy.",
+      "acceptance": "Отчёт показывает реальный backend, выбранный kernel и math policy; fast paths имеют kill switch.",
+      "evidence_dir": "evidence/runs/exec-05/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "EXEC-06",
+      "title": "Проверить композицию graph и обучения",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "EXEC-05"
+      ],
+      "implementation": "grad(compile), compile(grad), vmap/grad, checkpoint/recompute, RNG и state.",
+      "acceptance": "Композиционные тесты проходят; unsupported case исключается явно, а не detach.",
+      "evidence_dir": "evidence/runs/exec-06/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "AD-01",
+      "title": "Перенести reverse-mode и gradient contracts",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-06"
+      ],
+      "implementation": "VJP registration, multiple inputs/outputs, broadcasting reductions и unused gradients. Forward kernels без правил не должны выдавать zero gradients.",
+      "acceptance": "Finite differences и базовые аналитические сравнения float64/float32 на маленьких формах.",
+      "evidence_dir": "evidence/runs/ad-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "AD-02",
+      "title": "Forward-mode JVP",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "AD-01"
+      ],
+      "implementation": "Реализовать tangents для общего operator inventory, проверять примитивы с несколькими выходами и shared parameters.",
+      "acceptance": "JVP finite directional derivatives и сопоставление с VJP duality.",
+      "evidence_dir": "evidence/runs/ad-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "AD-03",
+      "title": "vmap и batching rules",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "AD-02"
+      ],
+      "implementation": "Сохранить произвольные mapped axes, nested vmap и transform compositions без скрытого Python sequence loop как production implementation.",
+      "acceptance": "vmap численно эквивалентен независимым примерам и корректно работает с grad.",
+      "evidence_dir": "evidence/runs/ad-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "AD-04",
+      "title": "Higher-order differentiation",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "AD-03"
+      ],
+      "implementation": "Реализовать/проверить вторые производные и non-smooth conventions pinned MLX.",
+      "acceptance": "Hessian-vector toy test, grad-of-grad; отсутствие silent no-backward paths.",
+      "evidence_dir": "evidence/runs/ad-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "AD-05",
+      "title": "Activation checkpointing и state gradients",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "AD-04"
+      ],
+      "implementation": "Разграничить full BPTT и явный truncated-BPTT/detach; сделать recompute с корректным RNG.",
+      "acceptance": "Длинный toy recurrence сохраняет gradients при recompute; detach требует явного параметра.",
+      "evidence_dir": "evidence/runs/ad-05/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "AD-06",
+      "title": "Проверить optimized primitive transforms",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "AD-05"
+      ],
+      "implementation": "Для каждого нового CUDA-kernel VJP/JVP/vmap либо safe semantic fallback, видимый в capabilities.",
+      "acceptance": "Ни один optimized inference path не подменяет обучение неверным градиентом.",
+      "evidence_dir": "evidence/runs/ad-06/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "NN-01",
+      "title": "Module и parameter trees",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "AD-01"
+      ],
+      "implementation": "Структура параметров/буферов, train/eval, freeze, shared/tied weights, tree flatten/unflatten.",
+      "acceptance": "Shared parameter не удваивается в optimizer; buffer state не обучается случайно.",
+      "evidence_dir": "evidence/runs/nn-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "NN-02",
+      "title": "Layers, initializers и losses",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "NN-01"
+      ],
+      "implementation": "Портировать общие слои и losses pinned surface; loss reduction axes и ignored labels.",
+      "acceptance": "Toy MLP/conv/attention обучаются через публичное nn API.",
+      "evidence_dir": "evidence/runs/nn-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "NN-03",
+      "title": "Optimizers и schedules",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "NN-02"
+      ],
+      "implementation": "SGD, Adam/AdamW и остальная обязательная поверхность; state dtype, schedule step, weight decay exclusions.",
+      "acceptance": "Сопоставление шагов с независимым oracle; mixed precision не теряет master/moment state.",
+      "evidence_dir": "evidence/runs/nn-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "NN-04",
+      "title": "Checkpoint/resume общего обучения",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "NN-03"
+      ],
+      "implementation": "Параметры, optimizer, RNG, scheduler, scaler и dataset position; versioned metadata, atomic writes.",
+      "acceptance": "Непрерывная N-step траектория совпадает с N/2+resume в установленном детерминированном режиме.",
+      "evidence_dir": "evidence/runs/nn-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "NN-05",
+      "title": "Полное обучение маленьких произвольных сетей",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "NN-04"
+      ],
+      "implementation": "MLP, conv и recurrent toy без model-specific if branches; CPU и Spark где поддерживается.",
+      "acceptance": "Loss падает, gradients валидны, training настоящий mlx_spark; NumPy fixture не засчитывается.",
+      "evidence_dir": "evidence/runs/nn-05/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "NN-06",
+      "title": "Смешанная точность и gradient accumulation",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "NN-05"
+      ],
+      "implementation": "BF16 политика, accumulation FP32, clipping, optional loss scaling где нужно, finite-gradient diagnostics.",
+      "acceptance": "Accumulation эквивалентен большой effective batch в допусках; overflow обработан явно.",
+      "evidence_dir": "evidence/runs/nn-06/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "QWN-01",
+      "title": "Аудит checkpoint и семантики архитектуры",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "FND-03"
+      ],
+      "implementation": "Сопоставить pinned config, weight index, tokenizer/chat template и reference implementation. Проверить qwen3_5 dispatch, gates, RoPE, norm conventions, vision/MTP presence.",
+      "acceptance": "Model spec содержит source links, exact revisions, tensor key classes и unknowns; никаких выводов только по имени 27B.",
+      "evidence_dir": "evidence/runs/qwn-01/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "QWN-02",
+      "title": "Безопасный weight loader и manifest",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-01"
+      ],
+      "implementation": "Читать safetensors index/headers, shapes/dtypes/total sizes, fail on unexpected/missing keys. Text-only исключения vision/MTP делать отчётом, никогда silently.",
+      "acceptance": "Все tensors учтены; no pickle/trust_remote_code; bounded streaming; immutable input weights.",
+      "evidence_dir": "evidence/runs/qwn-02/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "QWN-03",
+      "title": "Tokenizer, chat template и sampling contract",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-02"
+      ],
+      "implementation": "Сохранить специальные токены, reasoning settings, BOS/EOS, tool-call formatting как формат данных. Pin processors.",
+      "acceptance": "Exact token-ID golden fixtures на русском/английском/code; генерация сравнивается по одинаковым input IDs.",
+      "evidence_dir": "evidence/runs/qwn-03/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "QWN-04",
+      "title": "Собрать текстовую модель из общих модулей",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-03",
+        "NN-02",
+        "CORE-06"
+      ],
+      "implementation": "Соединить embeddings, 48 GDN/16 attention, FFN, norms и projection по audited config; generic primitives не знают имени Qwen.",
+      "acceptance": "Intermediate activations и logits проверены послойно против independent reference; native core prerequisite перед execution.",
+      "evidence_dir": "evidence/runs/qwn-04/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "QWN-05",
+      "title": "Согласовать GDN и convolution state",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-04",
+        "MEM-03"
+      ],
+      "implementation": "Раздельно recurrent FP32, convolution history, attention KV, positions, RNG. Версионировать snapshot и проверить exact state transitions.",
+      "acceptance": "Chunked/whole prefill, arbitrary boundaries и branch/resume эквивалентны; masked tokens не двигают state.",
+      "evidence_dir": "evidence/runs/qwn-05/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "QWN-06",
+      "title": "Полное внимание и positional semantics",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-05"
+      ],
+      "implementation": "GQA head ratio, attention output gate, causal mask, partial/multimodal RoPE. KV shape не выводить из hidden_size/heads.",
+      "acceptance": "Prefill и cached decode совпадают; все position offsets корректны; длинные prompt тестируются постепенно.",
+      "evidence_dir": "evidence/runs/qwn-06/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "QWN-07",
+      "title": "Генерация и lifecycle",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-06"
+      ],
+      "implementation": "Streaming tokens, max_new_tokens, EOS, cancellation, error cleanup, deterministic greedy reference и controlled sampling.",
+      "acceptance": "Session A/B isolation, cancellation recovery, no stale cache; текстовая CLI без HTTP-serving.",
+      "evidence_dir": "evidence/runs/qwn-07/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "QWN-08",
+      "title": "Управление контекстом и logits",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-07"
+      ],
+      "implementation": "Chunked prefill и только необходимые logits по умолчанию; all-logits отдельный opt-in с budget. Проверить 128,1K,4K,8K,32K staged.",
+      "acceptance": "Memory/time traces; 32K только при safe budget; 262144 остаётся unvalidated до отдельных тестов.",
+      "evidence_dir": "evidence/runs/qwn-08/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "QWN-09",
+      "title": "Подтвердить BF16 text correctness gate",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-08"
+      ],
+      "implementation": "Frozen evaluation fixtures, logits/NLL and behavioral tasks; независимая review аномалий без расширения tolerances ради green.",
+      "acceptance": "Все mandatory текстовые cases и state checks проходят на real GB10; checkpoints/precision recorded.",
+      "evidence_dir": "evidence/runs/qwn-09/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "GDN-01",
+      "title": "Сверить математический oracle и масштабы",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-01",
+        "CORE-06"
+      ],
+      "implementation": "Проверить bundled NumPy recurrence/VJP против pinned independent PyTorch/reference. q/k normalization/readout scale outside primitive; scalar decay not log-decay.",
+      "acceptance": "Finite-difference tests plus independent formula review; никаких compound-forward заявлений только по toy.",
+      "evidence_dir": "evidence/runs/gdn-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "GDN-02",
+      "title": "Скомпилировать и проверить CUDA reference",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "GDN-01"
+      ],
+      "implementation": "Проверить bundled opt-in FP32 t=1 kernel на GB10: shape guards, masked state, tails, strides rejected; memcheck/racecheck.",
+      "acceptance": "Реальный CUDA compile+execute+sanitizer отчёт; одна toy shape не закрывает operator coverage.",
+      "evidence_dir": "evidence/runs/gdn-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "GDN-03",
+      "title": "BF16 decode и numerical drift",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "GDN-02"
+      ],
+      "implementation": "Добавить production dtype dispatch при FP32 state/accumulation; no hidden TF32/fp4 changes.",
+      "acceptance": "Randomized q/k/v/g ranges, thousands-step recurrence drift и comparison before/after fusion.",
+      "evidence_dir": "evidence/runs/gdn-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "GDN-04",
+      "title": "Chunked prefill algorithm",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "GDN-03"
+      ],
+      "implementation": "Выбрать алгоритм block/chunk recurrence с доказанной causal equivalence и ограниченным workspace. Serial oracle остаётся только тестом.",
+      "acceptance": "Whole/chunk equivalence, varied lengths/nonzero state/masks; реально улучшенный prefill без decode regression.",
+      "evidence_dir": "evidence/runs/gdn-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "GDN-05",
+      "title": "Backward и transform интеграция",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "GDN-04"
+      ],
+      "implementation": "VJP optimized path с checkpoint/recompute tradeoff; JVP/vmap/higher-order fallback к differentiable primitives where valid.",
+      "acceptance": "Analytic+finite differences+Qwen LoRA gradients; no silent detach at chunk boundary.",
+      "evidence_dir": "evidence/runs/gdn-05/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "GDN-06",
+      "title": "Профилирование и production dispatch",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "GDN-05"
+      ],
+      "implementation": "Оптимизировать только measured hotspots: register pressure, occupancy, memory reads, launch count; rollback switch.",
+      "acceptance": "End-to-end Qwen profile подтверждает пользу, operator fast path feature-gated по capabilities.",
+      "evidence_dir": "evidence/runs/gdn-06/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "QTZ-01",
+      "title": "Зафиксировать первый quant format",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-09",
+        "GDN-03"
+      ],
+      "implementation": "Выбрать один воспроизводимый groupwise affine 4-bit format или иной измеренно обоснованный; документировать packing, scales, zero/bias, axes, exclusions.",
+      "acceptance": "Формат round-trip и forward reference определён; NVFP4/INT4 не смешиваются как синонимы.",
+      "evidence_dir": "evidence/runs/qtz-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "QTZ-02",
+      "title": "Converter с ограниченной памятью",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QTZ-01"
+      ],
+      "implementation": "Streaming конвертация, source/output разные пути, неизменённые norms/gates/embeddings по явной карте.",
+      "acceptance": "Все веса accounted; metadata сохраняет revision и calibration; peak memory/disk измерены.",
+      "evidence_dir": "evidence/runs/qtz-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "QTZ-03",
+      "title": "Quantized matmul и training compatibility",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QTZ-02"
+      ],
+      "implementation": "Weight-only quantized forward, dequantization reference, exact backward к inputs/LoRA; integer weights не получают фиктивные gradients.",
+      "acceptance": "Matrix/tail shapes и dtype проверены; frozen base + LoRA дают верные gradients.",
+      "evidence_dir": "evidence/runs/qtz-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "QTZ-04",
+      "title": "Quality и performance comparison",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QTZ-03"
+      ],
+      "implementation": "Сопоставить BF16 и первый quant на fixed holdout, NLL/logits/task metrics, длинных состояниях.",
+      "acceptance": "Quality thresholds preregistered/approved; held-out данные не используются для calibration; regression причины объяснены.",
+      "evidence_dir": "evidence/runs/qtz-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "QTZ-05",
+      "title": "Дополнительные precision formats по evidence",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QTZ-04"
+      ],
+      "implementation": "Рассмотреть FP8/NVFP4 только после первого стабильного format; проверить hardware/packing/library path.",
+      "acceptance": "Каждый новый формат самостоятельная capability с tests; нет рекламного списка непроверенных precisions.",
+      "evidence_dir": "evidence/runs/qtz-05/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "TRAIN-01",
+      "title": "LoRA BF16 end-to-end",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "NN-06",
+        "QWN-09"
+      ],
+      "implementation": "Выбрать audited target modules, adapter dtype/rank и optimizer, dataset local synthetic. Проверить gradients through recurrent stack.",
+      "acceptance": "Train loss curve + held-out sanity; frozen base unchanged; adapter restore даёт тот же forward.",
+      "evidence_dir": "evidence/runs/train-01/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "TRAIN-02",
+      "title": "LoRA checkpoint resume и reproducibility",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "TRAIN-01"
+      ],
+      "implementation": "Сохранять optimizer/scheduler/RNG/dataloader position, gradient accumulation и adapter manifest.",
+      "acceptance": "Split/resume trajectory в tolerance; checksum base weights до/после совпадает.",
+      "evidence_dir": "evidence/runs/train-02/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "TRAIN-03",
+      "title": "QLoRA path",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "TRAIN-02",
+        "QTZ-03",
+        "GDN-05"
+      ],
+      "implementation": "Подключить approved quantized base с точными input gradients, отключить MTP/vision training если ещё не validated; явные ограничения.",
+      "acceptance": "QLoRA шагает на GB10 без OOM и без fake gradients; dtype map и peak memory приложены.",
+      "evidence_dir": "evidence/runs/train-03/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "TRAIN-04",
+      "title": "Полный training API audit",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "TRAIN-03"
+      ],
+      "implementation": "Проверить обучаемость всех общих операторов независимо от возможности full-27B training в 128GB.",
+      "acceptance": "Full-parameter toy training обязателен; full-27B memory limitation не маскируется CPU offload into same UMA.",
+      "evidence_dir": "evidence/runs/train-04/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "TRAIN-05",
+      "title": "Документация обучающих режимов",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "TRAIN-04"
+      ],
+      "implementation": "Рецепты LoRA/QLoRA с bounded budgets, recovery, reproducibility и объяснением unsupported full-model cases.",
+      "acceptance": "Пользователь проходит рецепт из чистого env; документация соответствует real measured settings.",
+      "evidence_dir": "evidence/runs/train-05/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "VIS-01",
+      "title": "Processor и visual token contract",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-09"
+      ],
+      "implementation": "Pin preprocessing/resize/normalization/patching/special tokens без remote code; лимиты изображения и видео до decode.",
+      "acceptance": "Golden tensors/token IDs, malformed/oversized media fail safely; no network fetch by default.",
+      "evidence_dir": "evidence/runs/vis-01/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "VIS-02",
+      "title": "Vision encoder и projector",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "VIS-01"
+      ],
+      "implementation": "Перенести encoder/projector из audited weights с shared ops; проверить norm/conv/attention precision.",
+      "acceptance": "Layerwise numerics и simple image-text fixtures against oracle, memory report.",
+      "evidence_dir": "evidence/runs/vis-02/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "VIS-03",
+      "title": "Multimodal RoPE и интеграция",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "VIS-02"
+      ],
+      "implementation": "Positions/spatial merge/temporal patches, image tokens в language stack, chunking constraints.",
+      "acceptance": "Text-only поведение не регрессирует; mixed text/image batch state correct.",
+      "evidence_dir": "evidence/runs/vis-03/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "VIS-04",
+      "title": "Видео и мультимодальная приёмка",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "VIS-03"
+      ],
+      "implementation": "Ограниченные local synthetic video fixtures, frame sampling, budgeting и deterministic processor settings.",
+      "acceptance": "Image+video tests проверены; безопасность декодера/лимиты задокументированы; no unsupported full-VLM claim.",
+      "evidence_dir": "evidence/runs/vis-04/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "MTP-01",
+      "title": "Аудит MTP weights и алгоритма",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-09",
+        "GDN-05"
+      ],
+      "implementation": "Проверить dedicated embeddings, hidden state plumbing и spec definition; loaded MTP tensors нельзя discard.",
+      "acceptance": "Manifest accounted, t=1 draft/reference output сравнен; unsupported template явно ошибкой.",
+      "evidence_dir": "evidence/runs/mtp-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "MTP-02",
+      "title": "Exact speculative verification",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "MTP-01"
+      ],
+      "implementation": "Реализовать acceptance/rejection с корректным sampling distribution; greedy и stochastic отдельно. Не путать heuristic draft с exact algorithm.",
+      "acceptance": "Toy distribution tests и greedy equivalence; counters draft/accepted/rejected в отчёте.",
+      "evidence_dir": "evidence/runs/mtp-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "MTP-03",
+      "title": "Откат полного hybrid state",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "MTP-02"
+      ],
+      "implementation": "Snapshot/replay/rollback включает recurrence, conv, KV, positions, RNG. Усечение KV недостаточно.",
+      "acceptance": "Reject at every draft position, cancellation and branching fixtures match non-MTP continuation.",
+      "evidence_dir": "evidence/runs/mtp-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "MTP-04",
+      "title": "Измерить полезность MTP",
+      "owner": "Terra",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "MTP-03"
+      ],
+      "implementation": "Draft cost, verify cost, acceptance, memory и TTFT/latency; безопасное выключение, no unconditional enabled-by-default.",
+      "acceptance": "Включён только на проверенных workloads/settings; численного speedup обещания без замеров нет.",
+      "evidence_dir": "evidence/runs/mtp-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "PERF-01",
+      "title": "Заморозить benchmark protocol",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "QWN-09",
+        "EXEC-05",
+        "MEM-06"
+      ],
+      "implementation": "Определить input IDs, prompts, revisions, precision, math mode, output length, context, concurrency, seed, warmup, synchronization, trials.",
+      "acceptance": "Manifest валиден; baseline и candidate identical settings; no mixed quant/context comparison.",
+      "evidence_dir": "evidence/runs/perf-01/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "PERF-02",
+      "title": "Снять baseline одного Spark",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "PERF-01"
+      ],
+      "implementation": "Baseline MLX CUDA отдельно от candidate, один GPU, ограниченный workload. Температура/питание где доступны, without changing clocks.",
+      "acceptance": "Raw timings и memory, warm/cold разделены; p50/p95 and variability not single best run.",
+      "evidence_dir": "evidence/runs/perf-02/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "PERF-03",
+      "title": "Локализовать реальные bottlenecks",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "PERF-02"
+      ],
+      "implementation": "Profile GDN/attention/FFN/logits/load/memory; Nsight capture explicit opt-in чтобы не открыть данные.",
+      "acceptance": "Operator share и critical path определены; приоритет kernel следует profile, не предыдущему обещанию.",
+      "evidence_dir": "evidence/runs/perf-03/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "PERF-04",
+      "title": "Сравнить candidate с baseline",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "PERF-03"
+      ],
+      "implementation": "Same token IDs/precision/context; model time vs tokenize/load отдельно; GPU sync for elapsed time.",
+      "acceptance": "Paired deltas с variability и нет необъяснённой существенной регрессии; CPU oracle timing не называется GPU performance.",
+      "evidence_dir": "evidence/runs/perf-04/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "PERF-05",
+      "title": "Устойчивость и практические примеры",
+      "owner": "Luna",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "PERF-04"
+      ],
+      "implementation": "Bounded long session and repeated training/inference, memory pressure, cancellation. Synthetic user tasks без external application.",
+      "acceptance": "Soak logs, no leak/lockup, docs match real timings; energy only joules/token if actual telemetry adequate.",
+      "evidence_dir": "evidence/runs/perf-05/",
+      "reviewer": "Sol"
+    },
+    {
+      "id": "PKG-01",
+      "title": "Завершить самостоятельный wheel/SDK",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "CORE-10",
+        "EXEC-06",
+        "MEM-07",
+        "AD-06",
+        "NN-06"
+      ],
+      "implementation": "Own package and CMake exports; symbols/rpath/license/SBOM; minimal runtime deps, no installed mlx/torch imports.",
+      "acceptance": "Wheel installation in fresh env, C++ example link/run, uninstall does not remove other packages.",
+      "evidence_dir": "evidence/runs/pkg-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "PKG-02",
+      "title": "Закрыть CI и supply-chain риски",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "PKG-01"
+      ],
+      "implementation": "Pin CI actions and dependency hashes; protected hardware job only manual/trusted branches. Offline caches, no secrets in artifacts.",
+      "acceptance": "CPU CI, trusted GB10 suite, malicious/untrusted PR cannot run on private Spark.",
+      "evidence_dir": "evidence/runs/pkg-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "PKG-03",
+      "title": "Документация Apple-like workflow",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "PKG-02"
+      ],
+      "implementation": "Array/grad/compile/train/save/load/quantize/Qwen/diagnostics and troubleshooting. Все examples executable и status tagged.",
+      "acceptance": "Fresh-user path проходит без ручных правок скрытых env vars; не пять несовместимых APIs.",
+      "evidence_dir": "evidence/runs/pkg-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "PKG-04",
+      "title": "Полный single-Spark release audit",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "PKG-03",
+        "TRAIN-05",
+        "QTZ-04",
+        "VIS-04",
+        "MTP-04",
+        "PERF-05",
+        "FND-07"
+      ],
+      "implementation": "Collect gate evidence for exact API parity, Qwen text/training/quant/vision/MTP, install, performance, security.",
+      "acceptance": "check_gate проходит на настоящем evidence; skipped/unrun/fixture никогда не засчитываются.",
+      "evidence_dir": "evidence/runs/pkg-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "PKG-05",
+      "title": "Выпустить одноузловой release",
+      "owner": "Sol",
+      "phase": "single_spark",
+      "status": "todo",
+      "depends_on": [
+        "PKG-04"
+      ],
+      "implementation": "Заверить release notes/limitations/build manifest; upstream attribution, rollback and upgrade test. Package release locally, no public publish without authorization.",
+      "acceptance": "Артефакты воспроизводимы, gates signed off independent reviewer; release file opens future TP2 planning only.",
+      "evidence_dir": "evidence/runs/pkg-05/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "TP2-01",
+      "title": "Открыть TP2 только после single-Spark release",
+      "owner": "Sol",
+      "phase": "tp2_deferred",
+      "status": "deferred",
+      "depends_on": [
+        "PKG-05"
+      ],
+      "implementation": "Повторно проверить valid release evidence и запрос владельца на расширение. До этого не устанавливать NCCL/DOCA и не диагностировать сеть.",
+      "acceptance": "Вторая фаза явно открыта; исходный TP1 release неизменён.",
+      "evidence_dir": "evidence/runs/tp2-01/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "TP2-02",
+      "title": "Инвентаризация QSFP и transport experiments",
+      "owner": "Sol",
+      "phase": "tp2_deferred",
+      "status": "deferred",
+      "depends_on": [
+        "TP2-01"
+      ],
+      "implementation": "Только в фазе 2 проверить link/MTU/addressing и NCCL/RDMA fallback ограничения Spark. Не предполагать GPUDirect or 256GB coherent UMA.",
+      "acceptance": "Фактическая пропускная способность и latency measured; выбран поддерживаемый transport.",
+      "evidence_dir": "evidence/runs/tp2-02/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "TP2-03",
+      "title": "Tensor sharding для Qwen3.8-27B",
+      "owner": "Sol",
+      "phase": "tp2_deferred",
+      "status": "deferred",
+      "depends_on": [
+        "TP2-02"
+      ],
+      "implementation": "Разбить packed q/k/v/gates, GDN value heads, attention/FFN and vocab mappings с сохранением group semantics; generic tensor partition APIs.",
+      "acceptance": "Shard/reassemble invariant; shapes and state ownership match audited config.",
+      "evidence_dir": "evidence/runs/tp2-03/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "TP2-04",
+      "title": "Collectives и запуск одной модели на двух узлах",
+      "owner": "Sol",
+      "phase": "tp2_deferred",
+      "status": "deferred",
+      "depends_on": [
+        "TP2-03"
+      ],
+      "implementation": "TP=2 только; timeouts, failures, deterministic collectives where possible and rank logging. Не расширять до EP/PP.",
+      "acceptance": "End-to-end forward and state transitions match TP1 in defined tolerance.",
+      "evidence_dir": "evidence/runs/tp2-04/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "TP2-05",
+      "title": "Корректность и economics TP2",
+      "owner": "Sol",
+      "phase": "tp2_deferred",
+      "status": "deferred",
+      "depends_on": [
+        "TP2-04"
+      ],
+      "implementation": "Сравнить TP1/TP2 same model precision context; communication overhead and replication memory.",
+      "acceptance": "Нет заявления 2x speedup без измерений; TP1 stays first-class.",
+      "evidence_dir": "evidence/runs/tp2-05/",
+      "reviewer": "Luna"
+    },
+    {
+      "id": "TP2-06",
+      "title": "Поставить опциональный distributed component",
+      "owner": "Sol",
+      "phase": "tp2_deferred",
+      "status": "deferred",
+      "depends_on": [
+        "TP2-05"
+      ],
+      "implementation": "Отдельный extra/dependency path, отсутствие сети в default runtime, rollback two-node sessions.",
+      "acceptance": "Single-Spark users install/use without distributed stack; approved TP2 release notes.",
+      "evidence_dir": "evidence/runs/tp2-06/",
+      "reviewer": "Luna"
+    }
+  ]
+}

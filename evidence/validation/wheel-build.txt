@@ -1,0 +1,10 @@
+WARNING: The directory '/home/oai/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Processing /mnt/data/mlx-spark-handoff
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: mlx-spark-scaffold
+  Building wheel for mlx-spark-scaffold (pyproject.toml): started
+  Building wheel for mlx-spark-scaffold (pyproject.toml): finished with status 'done'
+  Created wheel for mlx-spark-scaffold: filename=mlx_spark_scaffold-0.0.0.dev0-py3-none-any.whl size=18501 sha256=0b504d7d9b88f5048b0bb190f61ccdc381f3dce473562aebbeec11cec81a2ca4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-7m3svjxc/wheels/a2/df/80/8c2e5f09c6b0e5453ed61ebd555e16704cce7108b191fc433e
+Successfully built mlx-spark-scaffold

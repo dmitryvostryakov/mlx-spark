@@ -1,0 +1,10 @@
+{
+  "ready": [
+    {
+      "id": "FND-01",
+      "title": "Зафиксировать одноузловой контракт и исходную точку",
+      "read": "planning/tasks/FND-01.md"
+    }
+  ],
+  "note": "No task is claimed or executed by this read-only command. Follow handoff/AGENT_PROTOCOL.md."
+}

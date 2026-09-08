@@ -1,0 +1,43 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "host-debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/host-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "MLX_SPARK_ENABLE_CUDA": "OFF"
+      }
+    },
+    {
+      "name": "spark-cuda-candidate",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/spark-cuda-candidate",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "MLX_SPARK_ENABLE_CUDA": "ON",
+        "CMAKE_CUDA_ARCHITECTURES": "121"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "host-debug",
+      "configurePreset": "host-debug"
+    },
+    {
+      "name": "spark-cuda-candidate",
+      "configurePreset": "spark-cuda-candidate"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "host-debug",
+      "configurePreset": "host-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+MLX-Spark local checks require Python 3.11+; set MLX_SPARK_PYTHON to a supported interpreter.

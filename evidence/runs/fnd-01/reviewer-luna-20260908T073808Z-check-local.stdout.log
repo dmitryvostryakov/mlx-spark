@@ -1,0 +1,33 @@
+{"tasks": 91, "acyclic": true, "single_spark": 85, "deferred": 6}
+...............................................                          [100%]
+47 passed in 0.55s
+-- The CXX compiler identification is AppleClang 21.0.0.21000101
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (1.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /var/folders/lk/nvbfmh5s2_n2lc0xg8_n3sqh0000gn/T/mlx-spark-fnd01-review.aiauwH/build/host-debug
+[1/4] Building CXX object CMakeFiles/mlx_spark_contracts.dir/native/src/contracts.cpp.o
+[2/4] Linking CXX static library libmlx_spark_contracts.a
+[3/4] Building CXX object CMakeFiles/test_contracts.dir/native/tests/test_contracts.cpp.o
+[4/4] Linking CXX executable test_contracts
+Test project /var/folders/lk/nvbfmh5s2_n2lc0xg8_n3sqh0000gn/T/mlx-spark-fnd01-review.aiauwH/build/host-debug
+    Start 1: host_contracts
+1/1 Test #1: host_contracts ...................   Passed    0.81 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.82 sec
+{
+  "stage": "scaffold_only",
+  "native_core": false,
+  "qwen_inference": false,
+  "framework_training": false,
+  "cuda_validated": false,
+  "tp2": "deferred"
+}
+
+Local scaffold checks only. No MLX native, CUDA, Qwen or GPU-training gate has passed.

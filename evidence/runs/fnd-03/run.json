@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "task": "FND-03",
+  "kind": "scaffold_cpu",
+  "implementation_commit": "bb90847652028350a144bc738d7a50c12c57cbe1",
+  "hardware": {
+    "selected_spark_label": "DGX2",
+    "scope": "single_spark",
+    "gpu_workload_executed": false,
+    "cuda_hardware_validation": "NOT_PERFORMED",
+    "cache_probe": {
+      "mode": "read_only_exact_revision",
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "complete": true,
+      "expected_shards": 18,
+      "present_shards": 18,
+      "aggregate_present_bytes": 55563006776,
+      "metadata_hashes_match": true,
+      "all_exact_index_shards_present": true,
+      "network_used": false,
+      "files_modified": false,
+      "evidence": "evidence/runs/fnd-03/weight-cache-probe.stdout.log"
+    },
+    "second_node_contacted": false,
+    "tp2_touched": false
+  },
+  "toolchain": {
+    "resolver_python": "3.14.3",
+    "dgx2_cache_probe_python": "system python3; exact version not re-queried by FND-03",
+    "dgx2_cuda_toolkit": "unknown_nvcc_unavailable_from_fnd_02",
+    "dgx2_cudnn": "unknown_from_fnd_02"
+  },
+  "commands": [
+    {
+      "argv": ["python3", "tools/resolve_sources.py"],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-03/resolver-network-disabled.stderr.log",
+      "stdout_log_path": "evidence/runs/fnd-03/resolver-network-disabled.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/resolver-network-disabled.stderr.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/resolve_sources.py",
+        "--allow-network",
+        "--output",
+        "evidence/runs/fnd-03/resolved-sources.baseline.json"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-03/resolver-baseline.stdout.log",
+      "stdout_log_path": "evidence/runs/fnd-03/resolver-baseline.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/resolver-baseline.stderr.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/resolve_sources.py",
+        "--allow-network",
+        "--candidate",
+        "evidence/runs/fnd-03/source-lock.pinned-input.json",
+        "--output",
+        "configs/source-lock.resolved.json"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-03/resolver-audit.stdout.log",
+      "stdout_log_path": "evidence/runs/fnd-03/resolver-audit.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/resolver-audit.stderr.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/resolve_sources.py",
+        "--allow-network",
+        "--candidate",
+        "evidence/runs/fnd-03/source-lock.pinned-input.json",
+        "--output",
+        "configs/source-lock.resolved.json"
+      ],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-03/resolver-overwrite-refusal.stderr.log",
+      "stdout_log_path": "evidence/runs/fnd-03/resolver-overwrite-refusal.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/resolver-overwrite-refusal.stderr.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_source_resolution.py",
+        "tests/test_qwen_cache_probe.py"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-03/source-cache-targeted.stdout.log",
+      "stdout_log_path": "evidence/runs/fnd-03/source-cache-targeted.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/source-cache-targeted.stderr.log"
+    },
+    {
+      "argv": [
+        "bash",
+        "-c",
+        "ssh -o BatchMode=yes -o ConnectTimeout=15 dgx2 'python3 - --revision 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0 --expected-config-sha256 191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab --expected-index-sha256 77042094076611b69791a610065f28b7013b8c621795fa86ddccc8bac7d1b9df --expected-tokenizer-config-sha256 b11349aafa7cdc6a320767cf7ceb29ed82f7eda5d65e8e0819e76f0ce947bf27' < tools/probe_qwen_cache.py"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-03/weight-cache-probe.stdout.log",
+      "stdout_log_path": "evidence/runs/fnd-03/weight-cache-probe.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/weight-cache-probe.stderr.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-03/check-local-implementation.stdout.log",
+      "stdout_log_path": "evidence/runs/fnd-03/check-local-implementation.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/check-local-implementation.stderr.log"
+    },
+    {
+      "argv": ["python3", "tools/validate_fnd03_evidence.py", "--allow-unreviewed"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-03/evidence-validation-candidate.stdout.log",
+      "stdout_log_path": "evidence/runs/fnd-03/evidence-validation-candidate.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/evidence-validation-candidate.stderr.log"
+    },
+    {
+      "argv": ["python3", "-m", "pytest", "-q", "tests/test_fnd03_evidence.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-03/evidence-contract-candidate.stdout.log",
+      "stdout_log_path": "evidence/runs/fnd-03/evidence-contract-candidate.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/evidence-contract-candidate.stderr.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-03/check-local-remediation.stdout.log",
+      "stdout_log_path": "evidence/runs/fnd-03/check-local-remediation.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/check-local-remediation.stderr.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "-c",
+        "import json,jsonschema; jsonschema.validate(json.load(open(\"evidence/runs/fnd-03/run.json\")),json.load(open(\"schemas/run.schema.json\"))); print(\"run_schema=valid\")"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-03/run-schema.stdout.log",
+      "stdout_log_path": "evidence/runs/fnd-03/run-schema.stdout.log",
+      "stderr_log_path": "evidence/runs/fnd-03/run-schema.stderr.log"
+    }
+  ],
+  "observations": [
+    "The owner explicitly authorized network metadata access and, if needed, weight download for FND-03 on 2026-09-08.",
+    "The first metadata-only discovery resolved four upstream heads but retained mutable provenance and lacked artifact hashes; it is preserved as an unreviewed baseline only.",
+    "The audited lock re-verifies four selected full revisions and hashes exact-revision license, config, model-card, weight-index, build-constraint, MLX-LM reference, and Transformers oracle files.",
+    "The exact Qwen config is structurally equal to the normalized local fixture; raw bytes differ only in serialization and retain separate hashes.",
+    "The exact Qwen index declares 1199 tensor entries across 18 safetensors shards and 55562855904 tensor-payload bytes.",
+    "A bounded read-only DGX2 cache probe matched the exact config, index, and tokenizer-config hashes, then found all 18 shards named by that authenticated index with 55563006776 aggregate file bytes. No redundant download was performed.",
+    "Weight shard contents were not hashed or executed; authenticated-index completeness is not model correctness or full weight artifact-integrity acceptance.",
+    "MLX and MLX-LM exact license notices are MIT; Transformers and Qwen exact license notices are Apache-2.0.",
+    "The pinned Transformers source includes Qwen3.5 config, conditional-generation, auto-model, and multimodal processor mappings used by Qwen3.8. Oracle runtime execution was not performed.",
+    "Oracle policy disables Hub kernels and remote code and requires local/offline inputs.",
+    "Pinned MLX source requires CUDA Toolkit and cuDNN, rejects CUDA 13.1, and derives a native architecture with an accelerated suffix for architectures >=90. DGX2 compatibility remains unknown because nvcc and cuDNN versions remain unknown.",
+    "Seven direct CMake source dependencies were resolved to full commit SHAs. Because upstream declarations still use tags or archives without hashes, networked build is explicitly denied until FND-04 materializes or overrides the exact pins.",
+    "All work remained on one selected Spark; the second node, TP2, NCCL execution, CUDA compilation, model loading, inference, and training were not touched."
+  ],
+  "unrun": [
+    "Any source build, install, import, or remote-code execution",
+    "Any CUDA compile/runtime validation on DGX2",
+    "Any full weight-shard cryptographic hashing",
+    "Any Qwen model load, inference, generation, evaluation, or training",
+    "Any Transformers oracle runtime",
+    "Any TP2, second-node, NCCL, QSFP, or distributed work"
+  ],
+  "review": {
+    "status": "pending",
+    "initial_candidate_commit": "bb90847652028350a144bc738d7a50c12c57cbe1",
+    "initial_status": "changes_requested",
+    "candidate_commit": "06222b0bcdc43ac8e775c5316ac4a6ddb22137a0",
+    "remediation_commit": "06222b0bcdc43ac8e775c5316ac4a6ddb22137a0",
+    "review_evidence": null
+  }
+}

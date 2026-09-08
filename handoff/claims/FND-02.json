@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "task": "FND-02",
+  "role": "Sol",
+  "claimed_at": "2026-09-08T08:07:51Z",
+  "base_commit": "c29d9d918dc473bca9b5cf055880e950e064a2f5",
+  "implementation_commit": "624eb88bc5c31a628cbc15180db21ec5b6dbd3da",
+  "selected_spark_label": "DGX2",
+  "status": "done",
+  "updated_at": "2026-09-08T08:54:22Z",
+  "implementation_review": "approved",
+  "hardware_acceptance": "approved_read_only_inventory",
+  "reviewed_candidate": "a127e17d45b5cec201e45029faeff2b9d475a641",
+  "evidence_remediation": "approved",
+  "approved_state": "7b0c1421b33c8606db77f68a2aa035c298260539",
+  "final_review_evidence": "evidence/runs/fnd-02/EVIDENCE_REVIEW.md",
+  "hash_manifest": "evidence/runs/fnd-02/FINAL.sha256",
+  "inventory_evidence": "evidence/runs/fnd-02/inventory.json",
+  "resource_budget": "evidence/runs/fnd-02/resource-budget.json",
+  "scope": "Read-only inventory of one selected DGX Spark; no second-node, network scan, stress, install, or system change."
+}

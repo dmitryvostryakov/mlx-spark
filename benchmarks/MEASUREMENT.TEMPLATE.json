@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "kind": "template_not_measurement",
+  "synthetic": true,
+  "nodes": 1,
+  "gpu_compute_capability": null,
+  "model_revision": null,
+  "input_ids_sha256": null,
+  "weight_format": null,
+  "kv_dtype": null,
+  "state_dtype": null,
+  "prompt_tokens": null,
+  "generated_tokens": null,
+  "batch": 1,
+  "math_mode": null,
+  "sampling_hash": null,
+  "warm_state": null,
+  "synchronized": false,
+  "implementation_commit": null,
+  "seconds": []
+}

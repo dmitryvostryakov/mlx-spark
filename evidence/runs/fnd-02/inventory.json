@@ -1,0 +1,96 @@
+{
+  "schema_version": 2,
+  "kind": "host_inventory_only",
+  "collected_at": "2026-09-08T08:36:38.589884+00:00",
+  "system": "Linux",
+  "machine": "aarch64",
+  "python": "3.12.3",
+  "libc": [
+    "glibc",
+    "2.39"
+  ],
+  "os_release": {
+    "status": "ok",
+    "PRETTY_NAME": "Ubuntu 24.04.4 LTS",
+    "VERSION_ID": "24.04",
+    "ID": "ubuntu"
+  },
+  "dgx_os": {
+    "status": "ok",
+    "pretty_name": "NVIDIA DGX Spark",
+    "swbuild_version": "7.2.3",
+    "ota_version": "7.5.0"
+  },
+  "memory": {
+    "status": "ok",
+    "MemTotal_bytes": 130663165952,
+    "MemAvailable_bytes": 121876148224,
+    "SwapTotal_bytes": 0,
+    "SwapFree_bytes": 0
+  },
+  "cgroup_memory": {
+    "status": "ok",
+    "version": 2,
+    "limit_bytes": null,
+    "current_bytes": null,
+    "available_bytes": null,
+    "finite_limit_levels": 0,
+    "constraint_scope": "current_cgroup_or_ancestor"
+  },
+  "disk": {
+    "status": "ok",
+    "scope": "selected_working_filesystem",
+    "total_bytes": 4031871553536,
+    "used_bytes": 3201630142464,
+    "free_bytes": 625400561664
+  },
+  "gpu": {
+    "status": "ok",
+    "visible_count": 1,
+    "devices": [
+      {
+        "name": "NVIDIA GB10",
+        "driver_version": "580.159.03",
+        "compute_capability": "12.1",
+        "memory_total_bytes": null,
+        "memory_free_bytes": null
+      }
+    ]
+  },
+  "nvcc": {
+    "status": "unavailable"
+  },
+  "host_compiler": {
+    "status": "ok",
+    "vendor": "gcc",
+    "version": "13.3.0"
+  },
+  "cmake": {
+    "status": "ok",
+    "version": "3.28.3"
+  },
+  "cudnn": {
+    "status": "unknown",
+    "version": null,
+    "reason": "not_found_in_standard_read_only_probes"
+  },
+  "hardware_validation": "NOT_PERFORMED",
+  "sensitive_fields_omitted": [
+    "hostname",
+    "IP",
+    "MAC",
+    "UUID",
+    "serial",
+    "username",
+    "home_path",
+    "mount_path",
+    "environment",
+    "network_interfaces",
+    "process_list"
+  ],
+  "warnings": [
+    "nvidia-smi memory is not a UMA capacity guarantee",
+    "No driver, toolkit, compiler, or cuDNN compatibility is inferred from version strings alone",
+    "Disk values cover only the filesystem containing the selected working directory"
+  ]
+}

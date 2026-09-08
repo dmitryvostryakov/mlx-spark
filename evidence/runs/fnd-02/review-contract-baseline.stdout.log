@@ -1,0 +1,27 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+____________ test_dgx_release_whitelists_versions_and_omits_serial _____________
+tests/test_doctor.py:69: in test_dgx_release_whitelists_versions_and_omits_serial
+    result = doctor._parse_dgx_release(release)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'mlx_spark.runtime.doctor' has no attribute '_parse_dgx_release'
+____________ test_nested_cgroup_v2_uses_smallest_ancestor_headroom _____________
+tests/test_doctor.py:91: in test_nested_cgroup_v2_uses_smallest_ancestor_headroom
+    result = doctor._cgroup_memory_from_hierarchy(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'mlx_spark.runtime.doctor' has no attribute '_cgroup_memory_from_hierarchy'
+_____________ test_nested_cgroup_v1_normalizes_unlimited_sentinel ______________
+tests/test_doctor.py:116: in test_nested_cgroup_v1_normalizes_unlimited_sentinel
+    result = doctor._cgroup_memory_from_hierarchy(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'mlx_spark.runtime.doctor' has no attribute '_cgroup_memory_from_hierarchy'
+___________ test_tool_versions_whitelist_fields_from_hostile_output ____________
+tests/test_doctor.py:150: in test_tool_versions_whitelist_fields_from_hostile_output
+    monkeypatch.setattr(doctor, "_run_capture", fake_run)
+E   AttributeError: <module 'mlx_spark.runtime.doctor' from '<redacted-home>/Coding_Projects/MLX-DGX/mlx-spark-handoff/src/mlx_spark/runtime/doctor.py'> has no attribute '_run_capture'
+=========================== short test summary info ============================
+FAILED tests/test_doctor.py::test_dgx_release_whitelists_versions_and_omits_serial
+FAILED tests/test_doctor.py::test_nested_cgroup_v2_uses_smallest_ancestor_headroom
+FAILED tests/test_doctor.py::test_nested_cgroup_v1_normalizes_unlimited_sentinel
+FAILED tests/test_doctor.py::test_tool_versions_whitelist_fields_from_hostile_output
+4 failed in 0.15s

@@ -1,0 +1,18 @@
+{
+  "browser": "Chromium headless",
+  "render_method": "set_content; file URL navigation restricted in preparation environment",
+  "desktop_viewport": [
+    1440,
+    1050
+  ],
+  "mobile_viewport": [
+    390,
+    844
+  ],
+  "section_count": 138,
+  "search_GDN_visible_sections": 32,
+  "search_operational": true,
+  "mobile_global_horizontal_overflow": false,
+  "javascript_errors": [],
+  "screenshots": "local QA scratch, not distributed"
+}

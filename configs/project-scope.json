@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "project": "MLX-Spark",
+  "product": "full_independent_mlx_like_framework",
+  "phase": "single_spark",
+  "max_nodes": 1,
+  "target_compute_capability": "12.1",
+  "first_model": "Qwen/Qwen3.8-27B",
+  "tp2": "deferred_until_stable_single_spark_release",
+  "runtime_forbidden_hidden_backends": [
+    "mlx",
+    "torch",
+    "transformers",
+    "vllm",
+    "sglang",
+    "numpy"
+  ],
+  "reference_tools_may_use": [
+    "numpy",
+    "mlx",
+    "torch",
+    "transformers"
+  ],
+  "forbidden_in_phase1": [
+    "distributed_runtime",
+    "network_transport",
+    "QSFP_diagnostics",
+    "SSH_second_node",
+    "Cortex_integration",
+    "Flash_Next"
+  ],
+  "system_modifications_authorized": false,
+  "public_publish_authorized": false
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "resolved_at": "2026-09-08T09:02:49.392946+00:00",
+  "review_state": "resolved_unreviewed",
+  "sources": {
+    "mlx": {
+      "kind": "git",
+      "repository": "ml-explore/mlx",
+      "revision": "365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5",
+      "ref_to_resolve": null,
+      "role": "proposed fork starting point; inspect before build",
+      "resolved_from": "365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5"
+    },
+    "mlx_lm": {
+      "kind": "git",
+      "repository": "ml-explore/mlx-lm",
+      "revision": "7fb4be44d560e5b74595210f83cb6003a57e52a7",
+      "ref_to_resolve": "main",
+      "role": "reference/audit only; not a product runtime dependency",
+      "resolved_from": "main"
+    },
+    "transformers": {
+      "kind": "git",
+      "repository": "huggingface/transformers",
+      "revision": "0df4ef369d324d4072e2910c673671eed4e92459",
+      "ref_to_resolve": "main",
+      "role": "isolated independent oracle; audit Qwen3.8 support before use",
+      "resolved_from": "main"
+    },
+    "qwen3_8_27b": {
+      "kind": "hf_model",
+      "repository": "Qwen/Qwen3.8-27B",
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "ref_to_resolve": "main",
+      "role": "metadata and model weights, separate approval before large download",
+      "resolved_from": "main"
+    }
+  },
+  "warning": "Resolution is not compatibility or supply-chain approval. No code or weights executed."
+}

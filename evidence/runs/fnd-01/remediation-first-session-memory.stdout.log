@@ -1,0 +1,9 @@
+{
+  "kv_bytes": 2147483648,
+  "recurrent_bytes": 150994944,
+  "conv_history_bytes": 2949120,
+  "logits_bytes": 496640,
+  "nominal_weight_bytes": null,
+  "estimate_only": true,
+  "fit_verdict": "UNKNOWN: workspaces, allocator overhead, conversion peaks and system reserve not measured"
+}

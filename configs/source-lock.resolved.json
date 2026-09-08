@@ -1,0 +1,430 @@
+{
+  "schema_version": 2,
+  "scope": "single_spark_source_metadata",
+  "resolved_at": "2026-09-08T09:34:36.133926+00:00",
+  "review_state": "resolved_unreviewed",
+  "review_evidence": null,
+  "candidate_sha256": "fc301f4d89d58c517c89412a2dad4a311e691be1cf0c64ac79b37594d437ad37",
+  "sources": {
+    "mlx": {
+      "kind": "git",
+      "repository": "ml-explore/mlx",
+      "revision": "365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5",
+      "role": "proposed fork starting point; inspect before build",
+      "exact_revision_metadata": {
+        "source_path": "commit-api.json",
+        "url": "https://api.github.com/repos/ml-explore/mlx/commits/365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5",
+        "verified_revision": "365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5",
+        "identity_sha256": "21b79f5924cf38af175ecbef8c62cc16bfc45ca64699fd5b6d24443b841f8342"
+      },
+      "artifacts": {
+        "license": {
+          "source_path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/ml-explore/mlx/365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5/LICENSE",
+          "bytes": 1066,
+          "sha256": "ccfab7ccb2ea306f71531c8ca77bb55507606cd90768b1e32b8b52ab5b48cf01"
+        },
+        "root_cmake": {
+          "source_path": "CMakeLists.txt",
+          "url": "https://raw.githubusercontent.com/ml-explore/mlx/365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5/CMakeLists.txt",
+          "bytes": 17188,
+          "sha256": "40d6674414f415096ebe3624ac91fbee9ea7069a69afcb44d60b7bfa56e331d6"
+        },
+        "cuda_cmake": {
+          "source_path": "mlx/backend/cuda/CMakeLists.txt",
+          "url": "https://raw.githubusercontent.com/ml-explore/mlx/365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5/mlx/backend/cuda/CMakeLists.txt",
+          "bytes": 13025,
+          "sha256": "7fe1af509fecffdeb6bdd7d88cfa83f2164ba7676e518e61021a4f1a69e6e676"
+        },
+        "find_cudnn": {
+          "source_path": "cmake/FindCUDNN.cmake",
+          "url": "https://raw.githubusercontent.com/ml-explore/mlx/365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5/cmake/FindCUDNN.cmake",
+          "bytes": 5928,
+          "sha256": "7a945752c982bc7cb029629eac833033944bd71a0d688d73ad71ff5a365c6173"
+        }
+      },
+      "audit": {
+        "license_id": "MIT",
+        "license_notice_verified": true,
+        "cuda_source_constraints": {
+          "cuda_toolkit_required": true,
+          "cudnn_required": true,
+          "cuda_13_1_rejected": true,
+          "native_arch_query_default": true,
+          "arch_90_or_newer_uses_accelerated_suffix": true,
+          "compression_flag_enabled_from_cuda_12_8": true,
+          "cudnn_frontend_git_tag": "v1.16.0",
+          "transitive_fetches_content_addressed": false,
+          "dgx2_cuda_toolkit_compatibility": "unknown_nvcc_unavailable",
+          "hardware_validation": "not_performed"
+        },
+        "transitive_source_pins": {
+          "cccl": {
+            "kind": "git",
+            "repository": "NVIDIA/cccl",
+            "revision": "d69eb55e0a0f6d55ca2af4c4edb2c7055c003993",
+            "exact_revision_url": "https://api.github.com/repos/NVIDIA/cccl/commits/d69eb55e0a0f6d55ca2af4c4edb2c7055c003993",
+            "declared_in_artifact": "cuda_cmake",
+            "declaration_artifact_sha256": "7fe1af509fecffdeb6bdd7d88cfa83f2164ba7676e518e61021a4f1a69e6e676",
+            "declaration_verified": true,
+            "upstream_declaration_content_addressed": false
+          },
+          "nvtx": {
+            "kind": "git",
+            "repository": "NVIDIA/NVTX",
+            "revision": "6230bdf710bc94f44d433acceba735aaa9090ba5",
+            "exact_revision_url": "https://api.github.com/repos/NVIDIA/NVTX/commits/6230bdf710bc94f44d433acceba735aaa9090ba5",
+            "declared_in_artifact": "cuda_cmake",
+            "declaration_artifact_sha256": "7fe1af509fecffdeb6bdd7d88cfa83f2164ba7676e518e61021a4f1a69e6e676",
+            "declaration_verified": true,
+            "upstream_declaration_content_addressed": false
+          },
+          "cudnn_frontend": {
+            "kind": "git",
+            "repository": "NVIDIA/cudnn-frontend",
+            "revision": "be6c079be8aaffa0fc079fcf039887e637c289c7",
+            "exact_revision_url": "https://api.github.com/repos/NVIDIA/cudnn-frontend/commits/be6c079be8aaffa0fc079fcf039887e637c289c7",
+            "declared_in_artifact": "cuda_cmake",
+            "declaration_artifact_sha256": "7fe1af509fecffdeb6bdd7d88cfa83f2164ba7676e518e61021a4f1a69e6e676",
+            "declaration_verified": true,
+            "upstream_declaration_content_addressed": false
+          },
+          "cutlass": {
+            "kind": "git",
+            "repository": "NVIDIA/cutlass",
+            "revision": "da5e086dab31d63815acafdac9a9c5893b1c69e2",
+            "exact_revision_url": "https://api.github.com/repos/NVIDIA/cutlass/commits/da5e086dab31d63815acafdac9a9c5893b1c69e2",
+            "declared_in_artifact": "cuda_cmake",
+            "declaration_artifact_sha256": "7fe1af509fecffdeb6bdd7d88cfa83f2164ba7676e518e61021a4f1a69e6e676",
+            "declaration_verified": true,
+            "upstream_declaration_content_addressed": false
+          },
+          "nlohmann_json": {
+            "kind": "git",
+            "repository": "nlohmann/json",
+            "revision": "9cca280a4d0ccf0c08f47a99aa71d1b0e52f8d03",
+            "exact_revision_url": "https://api.github.com/repos/nlohmann/json/commits/9cca280a4d0ccf0c08f47a99aa71d1b0e52f8d03",
+            "declared_in_artifact": "root_cmake",
+            "declaration_artifact_sha256": "40d6674414f415096ebe3624ac91fbee9ea7069a69afcb44d60b7bfa56e331d6",
+            "declaration_verified": true,
+            "upstream_declaration_content_addressed": false
+          },
+          "fmt": {
+            "kind": "git",
+            "repository": "fmtlib/fmt",
+            "revision": "407c905e45ad75fc29bf0f9bb7c5c2fd3475976f",
+            "exact_revision_url": "https://api.github.com/repos/fmtlib/fmt/commits/407c905e45ad75fc29bf0f9bb7c5c2fd3475976f",
+            "declared_in_artifact": "root_cmake",
+            "declaration_artifact_sha256": "40d6674414f415096ebe3624ac91fbee9ea7069a69afcb44d60b7bfa56e331d6",
+            "declaration_verified": true,
+            "upstream_declaration_content_addressed": false
+          },
+          "nanobind": {
+            "kind": "git",
+            "repository": "wjakob/nanobind",
+            "revision": "db4827f06f6f1680e5d4004c95fc8d69299dba8b",
+            "exact_revision_url": "https://api.github.com/repos/wjakob/nanobind/commits/db4827f06f6f1680e5d4004c95fc8d69299dba8b",
+            "declared_in_artifact": "root_cmake",
+            "declaration_artifact_sha256": "40d6674414f415096ebe3624ac91fbee9ea7069a69afcb44d60b7bfa56e331d6",
+            "declaration_verified": true,
+            "upstream_declaration_content_addressed": false
+          }
+        },
+        "networked_build_allowed": false,
+        "networked_build_block_reason": "Upstream CMake declarations use tags or archives without content hashes; materialize or override the exact transitive revisions before a networked build."
+      }
+    },
+    "mlx_lm": {
+      "kind": "git",
+      "repository": "ml-explore/mlx-lm",
+      "revision": "7fb4be44d560e5b74595210f83cb6003a57e52a7",
+      "role": "reference/audit only; not a product runtime dependency",
+      "exact_revision_metadata": {
+        "source_path": "commit-api.json",
+        "url": "https://api.github.com/repos/ml-explore/mlx-lm/commits/7fb4be44d560e5b74595210f83cb6003a57e52a7",
+        "verified_revision": "7fb4be44d560e5b74595210f83cb6003a57e52a7",
+        "identity_sha256": "6bb3eb1e311c277953091a4cbbedac5038343161e632f5b8c9ef7d96397ccd9a"
+      },
+      "artifacts": {
+        "license": {
+          "source_path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/ml-explore/mlx-lm/7fb4be44d560e5b74595210f83cb6003a57e52a7/LICENSE",
+          "bytes": 1066,
+          "sha256": "ccfab7ccb2ea306f71531c8ca77bb55507606cd90768b1e32b8b52ab5b48cf01"
+        },
+        "qwen3_5_reference": {
+          "source_path": "mlx_lm/models/qwen3_5.py",
+          "url": "https://raw.githubusercontent.com/ml-explore/mlx-lm/7fb4be44d560e5b74595210f83cb6003a57e52a7/mlx_lm/models/qwen3_5.py",
+          "bytes": 20055,
+          "sha256": "14c4898a03567998e825cb1817942001871e979b9e0cefd3b4383cbbb61eddf3"
+        },
+        "gated_delta_reference": {
+          "source_path": "mlx_lm/models/gated_delta.py",
+          "url": "https://raw.githubusercontent.com/ml-explore/mlx-lm/7fb4be44d560e5b74595210f83cb6003a57e52a7/mlx_lm/models/gated_delta.py",
+          "bytes": 20469,
+          "sha256": "2b58508fc85875b28ba49defd34c9a9264e9502de171fa8114e5cb0598a447b2"
+        }
+      },
+      "audit": {
+        "license_id": "MIT",
+        "license_notice_verified": true,
+        "reference_only": true,
+        "remote_code_executed": false
+      }
+    },
+    "transformers": {
+      "kind": "git",
+      "repository": "huggingface/transformers",
+      "revision": "0df4ef369d324d4072e2910c673671eed4e92459",
+      "role": "isolated independent oracle; audit Qwen3.8 support before use",
+      "exact_revision_metadata": {
+        "source_path": "commit-api.json",
+        "url": "https://api.github.com/repos/huggingface/transformers/commits/0df4ef369d324d4072e2910c673671eed4e92459",
+        "verified_revision": "0df4ef369d324d4072e2910c673671eed4e92459",
+        "identity_sha256": "f912c4d91b331990cf1ed0d9637589c5c48de37cad2574ee065b50788f860930"
+      },
+      "artifacts": {
+        "license": {
+          "source_path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/huggingface/transformers/0df4ef369d324d4072e2910c673671eed4e92459/LICENSE",
+          "bytes": 11418,
+          "sha256": "77fd4710def9ec3c0f6225800e0235f15a425abd4a8b03559127fcd782612049"
+        },
+        "qwen3_5_config": {
+          "source_path": "src/transformers/models/qwen3_5/configuration_qwen3_5.py",
+          "url": "https://raw.githubusercontent.com/huggingface/transformers/0df4ef369d324d4072e2910c673671eed4e92459/src/transformers/models/qwen3_5/configuration_qwen3_5.py",
+          "bytes": 8395,
+          "sha256": "19966c3200cee92cc4bccaef5f94550c56d731dbf03858a9bd2ed6aebcc3f7da"
+        },
+        "qwen3_5_modeling": {
+          "source_path": "src/transformers/models/qwen3_5/modeling_qwen3_5.py",
+          "url": "https://raw.githubusercontent.com/huggingface/transformers/0df4ef369d324d4072e2910c673671eed4e92459/src/transformers/models/qwen3_5/modeling_qwen3_5.py",
+          "bytes": 95578,
+          "sha256": "458360c8072e6130580639170ad3e645b975512dbabae31eab5f92de5f0f09ef"
+        },
+        "auto_mappings": {
+          "source_path": "src/transformers/models/auto/auto_mappings.py",
+          "url": "https://raw.githubusercontent.com/huggingface/transformers/0df4ef369d324d4072e2910c673671eed4e92459/src/transformers/models/auto/auto_mappings.py",
+          "bytes": 66290,
+          "sha256": "72fd4f61324bd4281e153a9ed8485c556a31a550df07b266ed83d24303428e1a"
+        },
+        "auto_modeling": {
+          "source_path": "src/transformers/models/auto/modeling_auto.py",
+          "url": "https://raw.githubusercontent.com/huggingface/transformers/0df4ef369d324d4072e2910c673671eed4e92459/src/transformers/models/auto/modeling_auto.py",
+          "bytes": 112634,
+          "sha256": "31d0fc246babd6eb78800123782ad1e0a0dc67481d8de12c7d246f7fb06148b1"
+        },
+        "auto_processing": {
+          "source_path": "src/transformers/models/auto/processing_auto.py",
+          "url": "https://raw.githubusercontent.com/huggingface/transformers/0df4ef369d324d4072e2910c673671eed4e92459/src/transformers/models/auto/processing_auto.py",
+          "bytes": 18125,
+          "sha256": "2ac6d6c9837e25eda9184c7a619708187aa564fcea96baf13ea7ff260e197517"
+        },
+        "auto_image_processing": {
+          "source_path": "src/transformers/models/auto/image_processing_auto.py",
+          "url": "https://raw.githubusercontent.com/huggingface/transformers/0df4ef369d324d4072e2910c673671eed4e92459/src/transformers/models/auto/image_processing_auto.py",
+          "bytes": 40727,
+          "sha256": "23c3a6fe0c7f1b9d520856379c80210ffb1c0868d1b892a730029da9610da251"
+        },
+        "auto_video_processing": {
+          "source_path": "src/transformers/models/auto/video_processing_auto.py",
+          "url": "https://raw.githubusercontent.com/huggingface/transformers/0df4ef369d324d4072e2910c673671eed4e92459/src/transformers/models/auto/video_processing_auto.py",
+          "bytes": 20722,
+          "sha256": "2dabbaf2fb5574631c6d08146035b8a25bd0e430a9eb5da0dcfe3746a1b14c06"
+        },
+        "hub_kernels": {
+          "source_path": "src/transformers/integrations/hub_kernels.py",
+          "url": "https://raw.githubusercontent.com/huggingface/transformers/0df4ef369d324d4072e2910c673671eed4e92459/src/transformers/integrations/hub_kernels.py",
+          "bytes": 44974,
+          "sha256": "c1eafefe0cbdf7f0deaa21b1ef6cb6d7c6082b3f486651d069ff38fcf3e53c95"
+        }
+      },
+      "audit": {
+        "license_id": "Apache-2.0",
+        "license_notice_verified": true,
+        "qwen3_5_config_source_present": true,
+        "qwen3_5_conditional_generation_source_present": true,
+        "qwen3_5_auto_config_registered": true,
+        "qwen3_5_auto_model_registered": true,
+        "qwen3_5_multimodal_processor_mappings_present": true,
+        "oracle_runtime_validation": "not_performed",
+        "oracle_required_environment": {
+          "USE_HUB_KERNELS": "NO"
+        },
+        "oracle_required_arguments": {
+          "use_kernels": false,
+          "trust_remote_code": false,
+          "local_files_only": true
+        },
+        "remote_code_executed": false
+      }
+    },
+    "qwen3_8_27b": {
+      "kind": "hf_model",
+      "repository": "Qwen/Qwen3.8-27B",
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "role": "metadata and model weights, separate approval before large download",
+      "exact_revision_metadata": {
+        "source_path": "model-api.json",
+        "url": "https://huggingface.co/api/models/Qwen/Qwen3.8-27B/revision/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+        "verified_revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+        "identity_sha256": "9dcb856111e573550d71a5f947423cd1c79a5e420a51a2dc74ddd27dd0c9ac98",
+        "selected_metadata": {
+          "repository": "Qwen/Qwen3.8-27B",
+          "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+          "license": "apache-2.0",
+          "pipeline_tag": "image-text-to-text",
+          "library_name": "transformers",
+          "sibling_filenames": [
+            ".gitattributes",
+            "LICENSE",
+            "README.md",
+            "chat_template.jinja",
+            "config.json",
+            "crc32.txt",
+            "generation_config.json",
+            "merges.txt",
+            "model-00001-of-00018.safetensors",
+            "model-00002-of-00018.safetensors",
+            "model-00003-of-00018.safetensors",
+            "model-00004-of-00018.safetensors",
+            "model-00005-of-00018.safetensors",
+            "model-00006-of-00018.safetensors",
+            "model-00007-of-00018.safetensors",
+            "model-00008-of-00018.safetensors",
+            "model-00009-of-00018.safetensors",
+            "model-00010-of-00018.safetensors",
+            "model-00011-of-00018.safetensors",
+            "model-00012-of-00018.safetensors",
+            "model-00013-of-00018.safetensors",
+            "model-00014-of-00018.safetensors",
+            "model-00015-of-00018.safetensors",
+            "model-00016-of-00018.safetensors",
+            "model-00017-of-00018.safetensors",
+            "model-00018-of-00018.safetensors",
+            "model.safetensors.index.json",
+            "preprocessor_config.json",
+            "tokenizer.json",
+            "tokenizer_config.json",
+            "video_preprocessor_config.json",
+            "vocab.json"
+          ]
+        },
+        "selected_metadata_sha256": "427e7b48ad24338145516b7dffc3a1f64b833a1c9ef07d1297fbbd79eeeaccc8"
+      },
+      "artifacts": {
+        "license": {
+          "source_path": "LICENSE",
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/LICENSE",
+          "bytes": 11544,
+          "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+        },
+        "model_card": {
+          "source_path": "README.md",
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/README.md",
+          "bytes": 65012,
+          "sha256": "57e4bdb258ee1a7d2635c5174ebd4e56abe392505cdb5f8bbb356b0dc4293641"
+        },
+        "config": {
+          "source_path": "config.json",
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/config.json",
+          "bytes": 4312,
+          "sha256": "191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab",
+          "canonical_json_sha256": "137754ebd46991bec0c0d9e660dc98256be0b20f0e825b28c95c31de6142d041"
+        },
+        "weight_index": {
+          "source_path": "model.safetensors.index.json",
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/model.safetensors.index.json",
+          "bytes": 112216,
+          "sha256": "77042094076611b69791a610065f28b7013b8c621795fa86ddccc8bac7d1b9df",
+          "canonical_json_sha256": "d42012ad951fde57b941ee731ab6016c9fe6662db6e45e538793b6d6f4091582"
+        },
+        "tokenizer_config": {
+          "source_path": "tokenizer_config.json",
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/tokenizer_config.json",
+          "bytes": 17928,
+          "sha256": "b11349aafa7cdc6a320767cf7ceb29ed82f7eda5d65e8e0819e76f0ce947bf27",
+          "canonical_json_sha256": "aa8b51734069bba5ee17a6bc8dc856e1f46f1ff61dac7dadb88e761376f04244"
+        },
+        "generation_config": {
+          "source_path": "generation_config.json",
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/generation_config.json",
+          "bytes": 202,
+          "sha256": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e",
+          "canonical_json_sha256": "2a9e2e943a60a95c34d1304e1c490df0e530362453ad8716b7a2a9bd3f0573cb"
+        },
+        "image_preprocessor_config": {
+          "source_path": "preprocessor_config.json",
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/preprocessor_config.json",
+          "bytes": 390,
+          "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+          "canonical_json_sha256": "465b9430ca4263c89a347330c0e245a9ec82ce635575f823a40fc0ec17bc5d77"
+        },
+        "video_preprocessor_config": {
+          "source_path": "video_preprocessor_config.json",
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/video_preprocessor_config.json",
+          "bytes": 385,
+          "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+          "canonical_json_sha256": "5c864f27124ca2e2fb4be738e3fa297e1a5d5cfaf77a45b2916e84b7a9921877"
+        }
+      },
+      "audit": {
+        "license_id": "Apache-2.0",
+        "license_notice_verified": true,
+        "model_type": "qwen3_5",
+        "architectures": [
+          "Qwen3_5ForConditionalGeneration"
+        ],
+        "pipeline_tag": "image-text-to-text",
+        "library_name": "transformers",
+        "config_comparison": {
+          "equal": true,
+          "changed_paths": [],
+          "local_snapshot_sha256": "7718cd6bf3d6521d5550966d4ab8484fc81a01347d74b7e52163070f35ca7f35",
+          "local_snapshot_canonical_json_sha256": "137754ebd46991bec0c0d9e660dc98256be0b20f0e825b28c95c31de6142d041",
+          "remote_config_raw_sha256": "191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab",
+          "remote_config_canonical_json_sha256": "137754ebd46991bec0c0d9e660dc98256be0b20f0e825b28c95c31de6142d041"
+        },
+        "weight_manifest": {
+          "format": "safetensors",
+          "shard_count": 18,
+          "tensor_count": 1199,
+          "tensor_payload_bytes": 55562855904,
+          "shard_filenames": [
+            "model-00001-of-00018.safetensors",
+            "model-00002-of-00018.safetensors",
+            "model-00003-of-00018.safetensors",
+            "model-00004-of-00018.safetensors",
+            "model-00005-of-00018.safetensors",
+            "model-00006-of-00018.safetensors",
+            "model-00007-of-00018.safetensors",
+            "model-00008-of-00018.safetensors",
+            "model-00009-of-00018.safetensors",
+            "model-00010-of-00018.safetensors",
+            "model-00011-of-00018.safetensors",
+            "model-00012-of-00018.safetensors",
+            "model-00013-of-00018.safetensors",
+            "model-00014-of-00018.safetensors",
+            "model-00015-of-00018.safetensors",
+            "model-00016-of-00018.safetensors",
+            "model-00017-of-00018.safetensors",
+            "model-00018-of-00018.safetensors"
+          ],
+          "weight_payload_downloaded": false,
+          "weight_payload_hashed": false
+        },
+        "remote_code_executed": false
+      }
+    }
+  },
+  "safety": {
+    "network_opt_in_required": true,
+    "metadata_only": true,
+    "remote_code_executed": false,
+    "weight_payload_downloaded": false,
+    "cuda_hardware_validation": "not_performed",
+    "second_node_contacted": false,
+    "tp2_touched": false
+  },
+  "warning": "Source-level audit is not a CUDA build/runtime or model-correctness validation."
+}

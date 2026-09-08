@@ -1,0 +1,1 @@
+{"cache": "complete_exact_revision", "cache_shards": 18, "metadata_hashes": 24, "qwen_config": "structurally_equal", "review": "resolved_unreviewed", "schema_version": 1, "scope": "single_spark", "source_lock": "valid", "task": "FND-03", "top_level_revisions": 4, "transitive_revisions": 7}

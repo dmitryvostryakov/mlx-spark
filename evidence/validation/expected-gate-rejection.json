@@ -1,0 +1,27 @@
+{
+  "pass": false,
+  "errors": [
+    "synthetic/missing evidence cannot pass",
+    "real single-Spark hardware declaration required",
+    "immutable implementation commit required",
+    "independent reviewer required",
+    "source_and_toolchain_lock: not passed",
+    "independent_native_package: not passed",
+    "public_api_parity: not passed",
+    "cpu_cuda_semantics: not passed",
+    "autodiff_vjp_jvp_vmap_higher_order: not passed",
+    "lazy_compile_streams: not passed",
+    "memory_lifetime_oom: not passed",
+    "generic_training_checkpoint_resume: not passed",
+    "qwen_bf16_text_state: not passed",
+    "qwen_lora_qlora: not passed",
+    "qwen_quantization_quality: not passed",
+    "qwen_vision_video: not passed",
+    "qwen_mtp_state_rollback: not passed",
+    "numeric_and_security_regressions: not passed",
+    "single_node_performance_no_material_regression: not passed",
+    "clean_install_docs_examples: not passed",
+    "independent_release_review: not passed"
+  ],
+  "note": "Hash validation is not proof that results are genuine."
+}

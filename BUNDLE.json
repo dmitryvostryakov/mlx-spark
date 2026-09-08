@@ -1,0 +1,30 @@
+{
+  "bundle_name": "MLX-Spark Single-Spark Engineering Hand-off",
+  "bundle_version": "0.1",
+  "prepared_date": "2026-09-08",
+  "language": "ru",
+  "product_status": "engineering_scaffold_not_finished_framework",
+  "phase_1": {
+    "platform": "one DGX Spark GB10",
+    "first_large_model": "Qwen/Qwen3.8-27B",
+    "scope": "full standalone MLX-like framework, including training"
+  },
+  "phase_2": {
+    "scope": "TP=2 using two DGX Spark",
+    "status": "deferred until stable single-Spark release"
+  },
+  "task_cards": 91,
+  "single_spark_tasks": 85,
+  "deferred_tp2_tasks": 6,
+  "entrypoints": [
+    "START_HERE.md",
+    "INDEX.html",
+    "AGENTS.md",
+    "CONTEXT.md",
+    "handoff/MASTER_PROMPT.md"
+  ],
+  "validation_report": "evidence/BUNDLE_VALIDATION.md",
+  "contains_model_weights": false,
+  "contains_upstream_source_checkout": false,
+  "contains_native_product_binaries": false
+}

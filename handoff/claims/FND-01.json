@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "task": "FND-01",
+  "role": "Sol",
+  "claimed_at": "2026-09-08T07:28:39Z",
+  "base": {
+    "kind": "delivery_zip_sha256",
+    "value": "c5a43d9403dc42b7c2d8e88ed754bc087aecc337931515692c69b3f3da37604e"
+  },
+  "repository_commit": "9ec1195d4080cc822ce7d73f5eb17a3410168d29",
+  "status": "completed",
+  "reviewed_state_commit": "455f84b4375ebf0be8654e6c55f1591876442532",
+  "review_evidence": "evidence/runs/fnd-01/REVIEW_APPROVAL.md",
+  "completed_at": "2026-09-08T08:02:27Z",
+  "scope": "Single-Spark scaffold acceptance only; full standalone framework remains the product goal; TP2 remains deferred."
+}

@@ -1,0 +1,8 @@
+base_to_implementation_ancestry=true
+implementation_to_submission_ancestry=true
+diff_check=true
+validator_net_diff=false
+safe_pytest_text_blob_unchanged=true
+delivery_xml_present_in_immutable_base=true
+delivery_xml_present_in_current_implementation=false
+delivery_xml_deleted_path=evidence/validation/pytest.xml

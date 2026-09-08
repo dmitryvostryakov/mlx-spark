@@ -1,0 +1,8 @@
+{
+  "stage": "scaffold_only",
+  "native_core": false,
+  "qwen_inference": false,
+  "framework_training": false,
+  "cuda_validated": false,
+  "tp2": "deferred"
+}

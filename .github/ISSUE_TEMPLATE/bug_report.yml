@@ -1,0 +1,51 @@
+name: Bug report
+description: Report a reproducible problem in the checked-in scaffold or implementation.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve MLX-Spark. Do not include credentials, private data, hostnames, IP addresses, hardware serial numbers, or model weights.
+  - type: input
+    id: revision
+    attributes:
+      label: Revision
+      description: Commit SHA, tag, or branch where you reproduced the issue.
+      placeholder: e.g. abc1234
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Commands and smallest input that reproduce the problem.
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include a concise, redacted error output if useful.
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Where did this happen?
+      options:
+        - CPU scaffold check
+        - Target DGX Spark / GB10
+        - Other environment
+    validations:
+      required: true

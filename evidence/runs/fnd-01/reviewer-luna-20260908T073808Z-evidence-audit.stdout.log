@@ -1,0 +1,22 @@
+{
+  "ctest": {
+    "disabled": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 1
+  },
+  "forbidden_hostname_metadata_files": [
+    "pytest.xml",
+    "ctest.xml"
+  ],
+  "pytest": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 47
+  },
+  "referenced_command_logs": "10/10",
+  "run_schema_valid": true,
+  "scaffold_claims_negative": true,
+  "tp2_all_deferred": true
+}

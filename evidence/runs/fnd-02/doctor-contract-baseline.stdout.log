@@ -1,0 +1,15 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_inventory_exposes_anonymized_budget_inputs ________________
+
+tmp_path = PosixPath('/private/var/folders/lk/nvbfmh5s2_n2lc0xg8_n3sqh0000gn/T/pytest-of-dmitryvostryakov/pytest-328/test_inventory_exposes_anonymi0')
+
+    def test_inventory_exposes_anonymized_budget_inputs(tmp_path):
+>       result = doctor.inventory(workdir=tmp_path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: inventory() got an unexpected keyword argument 'workdir'
+
+tests/test_doctor.py:13: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_doctor.py::test_inventory_exposes_anonymized_budget_inputs
+1 failed in 0.96s

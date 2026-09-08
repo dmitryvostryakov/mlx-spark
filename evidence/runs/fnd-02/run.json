@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "task": "FND-02",
+  "kind": "scaffold_cpu",
+  "implementation_commit": "624eb88bc5c31a628cbc15180db21ec5b6dbd3da",
+  "hardware": {
+    "selected_spark_label": "DGX2",
+    "inventory_status": "collected",
+    "connection_category": "connected",
+    "system": "Linux",
+    "machine": "aarch64",
+    "dgx_os": {
+      "pretty_name": "NVIDIA DGX Spark",
+      "swbuild_version": "7.2.3",
+      "ota_version": "7.5.0"
+    },
+    "gpu": {
+      "visible_count": 1,
+      "name": "NVIDIA GB10",
+      "compute_capability": "12.1"
+    },
+    "memory": {
+      "total_bytes": 130663165952,
+      "available_bytes": 121876148224,
+      "finite_cgroup_limit_observed": false,
+      "swap_total_bytes": 0
+    },
+    "selected_working_filesystem": {
+      "total_bytes": 4031871553536,
+      "free_bytes": 625400561664
+    },
+    "inventory_evidence": "evidence/runs/fnd-02/inventory.json",
+    "hardware_validation": "READ_ONLY_INVENTORY_ONLY",
+    "cuda_execution_validation": "NOT_PERFORMED"
+  },
+  "toolchain": {
+    "python": "3.12.3",
+    "glibc": "2.39",
+    "driver": "580.159.03",
+    "cuda_toolkit": {
+      "status": "unknown",
+      "reason": "nvcc_not_available_on_path"
+    },
+    "host_compiler": "gcc 13.3.0",
+    "cmake": "3.28.3",
+    "cudnn": {
+      "status": "unknown",
+      "reason": "not_found_in_standard_read_only_probes"
+    }
+  },
+  "commands": [
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "tests/test_doctor.py::test_inventory_exposes_anonymized_budget_inputs"],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-02/doctor-contract-baseline.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "tests/test_doctor.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/doctor-targeted-implementation.stdout.log"
+    },
+    {
+      "argv": [
+        "env",
+        "PYTHONPATH=src",
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "--tb=short",
+        "--basetemp=/tmp/mlx-spark-fnd02-review-contract-20260908",
+        "tests/test_doctor.py::test_dgx_release_whitelists_versions_and_omits_serial",
+        "tests/test_doctor.py::test_nested_cgroup_v2_uses_smallest_ancestor_headroom",
+        "tests/test_doctor.py::test_nested_cgroup_v1_normalizes_unlimited_sentinel",
+        "tests/test_doctor.py::test_tool_versions_whitelist_fields_from_hostile_output"
+      ],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-02/review-contract-baseline.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "tests/test_doctor.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/doctor-targeted-review-fixes.stdout.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/check-local-review-fixes.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "--tb=short", "--basetemp=/tmp/mlx-spark-fnd02-hybrid-contract-20260908", "tests/test_doctor.py::test_hybrid_cgroup_prefers_explicit_v1_memory_controller"],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-02/hybrid-contract-baseline.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "tests/test_doctor.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/doctor-targeted-hybrid-fix.stdout.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/check-local-hybrid-fix.stdout.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/final-state-check-local.stdout.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "-c",
+        "import json, jsonschema; schema=json.load(open(\"schemas/run.schema.json\")); instance=json.load(open(\"evidence/runs/fnd-02/run.json\")); jsonschema.validate(instance, schema); print(\"run_schema=valid\")"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/run-schema.stdout.log"
+    },
+    {
+      "argv": ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=10", "DGX2", "true"],
+      "exit_code": 255,
+      "log_path": "evidence/runs/fnd-02/connectivity.stdout.log"
+    },
+    {
+      "argv": ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=10", "dgx2", "true"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/connectivity-success.stdout.log"
+    },
+    {
+      "argv": ["bash", "-c", "ssh -o BatchMode=yes -o ConnectTimeout=10 dgx2 python3 - < src/mlx_spark/runtime/doctor.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/inventory.json"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "--tb=short", "tests/test_fnd02_evidence.py"],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-02/evidence-contract-baseline.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "tests/test_fnd02_evidence.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/evidence-contract-pass.stdout.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/hardware-candidate-check-local.stdout.log"
+    },
+    {
+      "argv": ["python3", "tools/validate_fnd02_evidence.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/evidence-validation-final.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "--tb=short", "tests/test_fnd02_evidence.py::test_run_records_replayable_single_node_safety_boundaries"],
+      "exit_code": 1,
+      "log_path": "evidence/runs/fnd-02/evidence-boundary-contract-baseline.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "tests/test_fnd02_evidence.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/evidence-boundary-contract-pass.stdout.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/evidence-remediation-check-local.stdout.log"
+    },
+    {
+      "argv": ["env", "PYTHONPATH=src", "python3", "-m", "pytest", "-q", "tests/test_fnd02_evidence.py"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/final-acceptance-evidence.stdout.log"
+    },
+    {
+      "argv": ["python3", "tools/next_task.py", "--agent", "Sol"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/final-acceptance-next-task.stdout.log"
+    },
+    {
+      "argv": ["bash", "scripts/check_local.sh"],
+      "exit_code": 0,
+      "log_path": "evidence/runs/fnd-02/final-acceptance-check-local.stdout.log"
+    }
+  ],
+  "observations": [
+    "The initial contract-first baseline failed because the prior doctor inventory did not accept a working-filesystem argument.",
+    "Independent implementation review requested DGX OS release fields, current-process nested cgroup accounting, and suppression of arbitrary version-command output.",
+    "Review remediation has contract tests for whitelisted DGX OS fields, nested cgroup v1/v2 and ancestor headroom, v1 unlimited normalization, and hostile tool output.",
+    "The committed probe is standard-library-only, emits JSON when executed directly, and can run from stdin without installing or writing files on the selected node.",
+    "A second review caught hybrid cgroup selection; an explicit finite v1 memory controller now takes precedence over a generic v2 membership.",
+    "Eleven targeted doctor tests passed; after adding two hardware-evidence contracts, the full local scaffold suite passed 62 Python plus one C++ host test.",
+    "The selected node is DGX2 only; no second-node or TP2 action was attempted.",
+    "An earlier connection attempt failed at name resolution; the owner-provided lowercase endpoint subsequently connected with exit zero.",
+    "The approved standalone doctor ran through stdin without a remote install or file write and produced the retained anonymized JSON.",
+    "DGX2 reported Linux aarch64, NVIDIA DGX Spark, one visible NVIDIA GB10 at compute capability 12.1, and driver 580.159.03.",
+    "Observed MemAvailable was 121876148224 bytes with no finite current-cgroup limit and no swap; GPU memory values were unavailable under the UMA reporting path and were not added to host memory.",
+    "Observed selected-filesystem free space was 625400561664 bytes.",
+    "nvcc was unavailable on PATH and cuDNN was not found by the standard read-only probes; toolkit and cuDNN versions remain explicitly unknown.",
+    "Conservative proposed caps are 80 GiB project working memory with a 32 GiB reserve, 256 GiB project disk with a 256 GiB free-space floor, a 96 GiB build-cache sub-cap, and four parallel build jobs.",
+    "The first final-evidence review accepted the hardware facts and budget arithmetic but requested a replayable validator and stronger run-boundary contracts.",
+    "The literal validator reports valid inventory, privacy, budget, referenced logs, run boundaries, and single-Spark scope; four evidence tests and the full 64-Python plus one-C++ suite pass after remediation.",
+    "Final independent re-review approved candidate 7b0c1421b33c8606db77f68a2aa035c298260539 with no remaining findings.",
+    "FND-02 accepts read-only inventory facts and safe foundation caps only; it does not accept CUDA execution or compatibility."
+  ],
+  "unrun": [
+    "Any CUDA compile or execution",
+    "Any Qwen inference or training",
+    "Any TP2, NCCL, QSFP, second-node, or network-scan work"
+  ],
+  "review": {
+    "initial_status": "changes_requested",
+    "first_remediation_commit": "a218828f5bf29ecf3d5e68abb09397a5311dfa8c",
+    "remediation_commit": "624eb88bc5c31a628cbc15180db21ec5b6dbd3da",
+    "implementation_re_review": "approved",
+    "implementation_review_evidence": "evidence/runs/fnd-02/IMPLEMENTATION_REVIEW.md",
+    "implementation_approved_at": "2026-09-08T08:26:52Z",
+    "hardware_acceptance": "approved_read_only_inventory",
+    "reviewed_candidate": "a127e17d45b5cec201e45029faeff2b9d475a641",
+    "hardware_review_evidence": "evidence/runs/fnd-02/EVIDENCE_REVIEW.md",
+    "evidence_remediation": "approved",
+    "approved_state": "7b0c1421b33c8606db77f68a2aa035c298260539",
+    "approved_at": "2026-09-08T08:54:22Z",
+    "independent_approvals": 2
+  },
+  "resource_budget": "evidence/runs/fnd-02/resource-budget.json",
+  "superseded_artifacts": [
+    {
+      "path": "evidence/runs/fnd-02/final-validation.stdout.log",
+      "used_for_acceptance": false,
+      "reason": "The historical raw summary is retained unchanged, but its exact wrapper argv was not retained."
+    },
+    {
+      "path": "evidence/runs/fnd-02/evidence-validation.stdout.log",
+      "used_for_acceptance": false,
+      "reason": "This exact first validator output used a command-count field that changed as later review commands were appended."
+    }
+  ],
+  "submission_evidence": {
+    "approved_candidate": "7b0c1421b33c8606db77f68a2aa035c298260539",
+    "hash_manifest": "evidence/runs/fnd-02/FINAL.sha256"
+  }
+}

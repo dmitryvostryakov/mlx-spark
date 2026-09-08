@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles/mlx_spark_contracts.dir/native/src/contracts.cpp.o
+[2/4] Linking CXX static library libmlx_spark_contracts.a
+[3/4] Building CXX object CMakeFiles/test_contracts.dir/native/tests/test_contracts.cpp.o
+[4/4] Linking CXX executable test_contracts

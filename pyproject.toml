@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlx-spark-scaffold"
+version = "0.0.0.dev0"
+description = "Honest, executable engineering scaffold for an independent single-Spark MLX-like framework"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+reference = ["numpy>=1.26,<3"]
+dev = ["pytest>=8,<10", "numpy>=1.26,<3"]
+
+[project.scripts]
+mlx-spark = "mlx_spark.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mlx_spark = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+  "gpu: requires a real GB10; never proof when skipped",
+  "model: requires reviewed, pinned Qwen weights",
+  "reference: independent CPU mathematical references, not the framework",
+]

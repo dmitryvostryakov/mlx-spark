@@ -1,0 +1,14 @@
+{
+  "stage": "scaffold_content_qa",
+  "syntax_checked": {
+    "python": 36,
+    "json": 23,
+    "toml": 1
+  },
+  "checked_local_links": 145,
+  "html_details_sections": 138,
+  "html_external_render_resources": [],
+  "run_record_schema": "valid",
+  "case_insensitive_paths": "unique",
+  "errors": []
+}

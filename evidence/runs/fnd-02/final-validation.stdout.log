@@ -1,0 +1,4 @@
+json_artifacts=valid
+plan=valid
+git_diff_check=pass
+privacy_scan=zero_matches

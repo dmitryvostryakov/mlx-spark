@@ -1,0 +1,19 @@
+{
+  "claim_repository_commit": "9ec1195d4080cc822ce7d73f5eb17a3410168d29",
+  "claim_status": "review_pending",
+  "gpu": "not_queried",
+  "hardware_validation": "NOT_PERFORMED",
+  "run_implementation_commit": "9ec1195d4080cc822ce7d73f5eb17a3410168d29",
+  "run_review": {
+    "evidence": [
+      "evidence/runs/fnd-01/REVIEW.md",
+      "evidence/runs/fnd-01/REVIEW_FINAL.md"
+    ],
+    "re_review": "pending",
+    "remediation_commit": "9ec1195d4080cc822ce7d73f5eb17a3410168d29",
+    "reviewer_role": "Luna",
+    "status": "changes_requested"
+  },
+  "task_status": "in_progress",
+  "unrun_count": 6
+}

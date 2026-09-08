@@ -1,0 +1,19 @@
+{
+  "status": "proposed_not_full_model_validated",
+  "baseline": {
+    "weights": "bfloat16",
+    "activations": "bfloat16",
+    "gdn_state": "float32",
+    "kv_cache": "bfloat16"
+  },
+  "hidden_precision_changes_allowed": false,
+  "fast_math": "explicit_recorded_setting",
+  "tf32": "explicit_recorded_setting",
+  "toy_float64_gdn_vjp_test": {
+    "epsilon": 1e-06,
+    "rtol": 2e-06,
+    "atol": 2e-08
+  },
+  "qwen_bf16_tolerances": null,
+  "policy": "Calibrate/approve model-specific thresholds against independent reference before candidate evaluation; do not reuse toy tolerances blindly."
+}

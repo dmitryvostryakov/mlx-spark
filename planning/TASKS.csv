@@ -1,0 +1,92 @@
+id,phase,owner,reviewer,status,depends_on,title,card
+FND-01,single_spark,Sol,Luna,todo,,Зафиксировать одноузловой контракт и исходную точку,tasks/FND-01.md
+FND-02,single_spark,Sol,Luna,todo,FND-01,Инвентаризировать выбранный Spark без изменений системы,tasks/FND-02.md
+FND-03,single_spark,Sol,Luna,todo,FND-02,Разрешить и проверить точные исходники,tasks/FND-03.md
+FND-04,single_spark,Sol,Luna,todo,FND-03,Собрать неизменённый upstream baseline изолированно,tasks/FND-04.md
+FND-05,single_spark,Sol,Luna,todo,FND-04,Импортировать проверенное ядро в собственную кодовую базу,tasks/FND-05.md
+FND-06,single_spark,Sol,Luna,todo,FND-05,Создать независимые namespace и сборку,tasks/FND-06.md
+FND-07,single_spark,Sol,Luna,todo,FND-06,Заморозить API inventory и совместимость,tasks/FND-07.md
+CORE-01,single_spark,Sol,Luna,todo,FND-06,"Массивы: владение, scalar и shape",tasks/CORE-01.md
+CORE-02,single_spark,Sol,Luna,todo,CORE-01,Типы данных и продвижение типов,tasks/CORE-02.md
+CORE-03,single_spark,Sol,Luna,todo,CORE-02,Индексирование и обновления,tasks/CORE-03.md
+CORE-04,single_spark,Sol,Luna,todo,CORE-03,Элементные операции и reductions,tasks/CORE-04.md
+CORE-05,single_spark,Sol,Luna,todo,CORE-04,Matmul и свёртки,tasks/CORE-05.md
+CORE-06,single_spark,Sol,Luna,todo,CORE-05,Нормы и attention primitives,tasks/CORE-06.md
+CORE-07,single_spark,Sol,Luna,todo,CORE-06,Random и явное состояние RNG,tasks/CORE-07.md
+CORE-08,single_spark,Sol,Luna,todo,CORE-07,"Linear algebra, FFT и остаток array API",tasks/CORE-08.md
+CORE-09,single_spark,Sol,Luna,todo,CORE-08,Interoperability и export,tasks/CORE-09.md
+CORE-10,single_spark,Sol,Luna,todo,CORE-09,Аудит полноты общего ядра,tasks/CORE-10.md
+MEM-01,single_spark,Terra,Luna,todo,FND-04,Проверить реальные memory capabilities GB10,tasks/MEM-01.md
+MEM-02,single_spark,Terra,Luna,todo,MEM-01,Ввести явные allocation policies,tasks/MEM-02.md
+MEM-03,single_spark,Terra,Luna,todo,MEM-02,Сделать stream-aware pool,tasks/MEM-03.md
+MEM-04,single_spark,Terra,Luna,todo,MEM-03,"Лимиты, memory pressure и OOM",tasks/MEM-04.md
+MEM-05,single_spark,Terra,Luna,todo,MEM-04,Загрузка и запись без пиковых копий,tasks/MEM-05.md
+MEM-06,single_spark,Terra,Luna,todo,MEM-05,Профиль UMA access patterns,tasks/MEM-06.md
+MEM-07,single_spark,Terra,Luna,todo,MEM-06,Долговременный memory stress,tasks/MEM-07.md
+EXEC-01,single_spark,Sol,Luna,todo,CORE-04,Lazy graph и границы materialization,tasks/EXEC-01.md
+EXEC-02,single_spark,Sol,Luna,todo,EXEC-01,"Streams, events и ошибки async",tasks/EXEC-02.md
+EXEC-03,single_spark,Sol,Luna,todo,EXEC-02,Compile и ограничения специализации,tasks/EXEC-03.md
+EXEC-04,single_spark,Sol,Luna,todo,EXEC-03,CUDA Graph capture после корректной eager базы,tasks/EXEC-04.md
+EXEC-05,single_spark,Sol,Luna,todo,EXEC-04,Profiler hooks и numerical mode,tasks/EXEC-05.md
+EXEC-06,single_spark,Sol,Luna,todo,EXEC-05,Проверить композицию graph и обучения,tasks/EXEC-06.md
+AD-01,single_spark,Sol,Luna,todo,CORE-06,Перенести reverse-mode и gradient contracts,tasks/AD-01.md
+AD-02,single_spark,Sol,Luna,todo,AD-01,Forward-mode JVP,tasks/AD-02.md
+AD-03,single_spark,Sol,Luna,todo,AD-02,vmap и batching rules,tasks/AD-03.md
+AD-04,single_spark,Sol,Luna,todo,AD-03,Higher-order differentiation,tasks/AD-04.md
+AD-05,single_spark,Sol,Luna,todo,AD-04,Activation checkpointing и state gradients,tasks/AD-05.md
+AD-06,single_spark,Sol,Luna,todo,AD-05,Проверить optimized primitive transforms,tasks/AD-06.md
+NN-01,single_spark,Sol,Luna,todo,AD-01,Module и parameter trees,tasks/NN-01.md
+NN-02,single_spark,Sol,Luna,todo,NN-01,"Layers, initializers и losses",tasks/NN-02.md
+NN-03,single_spark,Sol,Luna,todo,NN-02,Optimizers и schedules,tasks/NN-03.md
+NN-04,single_spark,Sol,Luna,todo,NN-03,Checkpoint/resume общего обучения,tasks/NN-04.md
+NN-05,single_spark,Sol,Luna,todo,NN-04,Полное обучение маленьких произвольных сетей,tasks/NN-05.md
+NN-06,single_spark,Sol,Luna,todo,NN-05,Смешанная точность и gradient accumulation,tasks/NN-06.md
+QWN-01,single_spark,Luna,Sol,todo,FND-03,Аудит checkpoint и семантики архитектуры,tasks/QWN-01.md
+QWN-02,single_spark,Luna,Sol,todo,QWN-01,Безопасный weight loader и manifest,tasks/QWN-02.md
+QWN-03,single_spark,Luna,Sol,todo,QWN-02,"Tokenizer, chat template и sampling contract",tasks/QWN-03.md
+QWN-04,single_spark,Luna,Sol,todo,QWN-03;NN-02;CORE-06,Собрать текстовую модель из общих модулей,tasks/QWN-04.md
+QWN-05,single_spark,Luna,Sol,todo,QWN-04;MEM-03,Согласовать GDN и convolution state,tasks/QWN-05.md
+QWN-06,single_spark,Luna,Sol,todo,QWN-05,Полное внимание и positional semantics,tasks/QWN-06.md
+QWN-07,single_spark,Luna,Sol,todo,QWN-06,Генерация и lifecycle,tasks/QWN-07.md
+QWN-08,single_spark,Luna,Sol,todo,QWN-07,Управление контекстом и logits,tasks/QWN-08.md
+QWN-09,single_spark,Luna,Sol,todo,QWN-08,Подтвердить BF16 text correctness gate,tasks/QWN-09.md
+GDN-01,single_spark,Terra,Luna,todo,QWN-01;CORE-06,Сверить математический oracle и масштабы,tasks/GDN-01.md
+GDN-02,single_spark,Terra,Luna,todo,GDN-01,Скомпилировать и проверить CUDA reference,tasks/GDN-02.md
+GDN-03,single_spark,Terra,Luna,todo,GDN-02,BF16 decode и numerical drift,tasks/GDN-03.md
+GDN-04,single_spark,Terra,Luna,todo,GDN-03,Chunked prefill algorithm,tasks/GDN-04.md
+GDN-05,single_spark,Terra,Luna,todo,GDN-04,Backward и transform интеграция,tasks/GDN-05.md
+GDN-06,single_spark,Terra,Luna,todo,GDN-05,Профилирование и production dispatch,tasks/GDN-06.md
+QTZ-01,single_spark,Terra,Luna,todo,QWN-09;GDN-03,Зафиксировать первый quant format,tasks/QTZ-01.md
+QTZ-02,single_spark,Terra,Luna,todo,QTZ-01,Converter с ограниченной памятью,tasks/QTZ-02.md
+QTZ-03,single_spark,Terra,Luna,todo,QTZ-02,Quantized matmul и training compatibility,tasks/QTZ-03.md
+QTZ-04,single_spark,Terra,Luna,todo,QTZ-03,Quality и performance comparison,tasks/QTZ-04.md
+QTZ-05,single_spark,Terra,Luna,todo,QTZ-04,Дополнительные precision formats по evidence,tasks/QTZ-05.md
+TRAIN-01,single_spark,Luna,Sol,todo,NN-06;QWN-09,LoRA BF16 end-to-end,tasks/TRAIN-01.md
+TRAIN-02,single_spark,Luna,Sol,todo,TRAIN-01,LoRA checkpoint resume и reproducibility,tasks/TRAIN-02.md
+TRAIN-03,single_spark,Luna,Sol,todo,TRAIN-02;QTZ-03;GDN-05,QLoRA path,tasks/TRAIN-03.md
+TRAIN-04,single_spark,Luna,Sol,todo,TRAIN-03,Полный training API audit,tasks/TRAIN-04.md
+TRAIN-05,single_spark,Luna,Sol,todo,TRAIN-04,Документация обучающих режимов,tasks/TRAIN-05.md
+VIS-01,single_spark,Luna,Sol,todo,QWN-09,Processor и visual token contract,tasks/VIS-01.md
+VIS-02,single_spark,Luna,Sol,todo,VIS-01,Vision encoder и projector,tasks/VIS-02.md
+VIS-03,single_spark,Luna,Sol,todo,VIS-02,Multimodal RoPE и интеграция,tasks/VIS-03.md
+VIS-04,single_spark,Luna,Sol,todo,VIS-03,Видео и мультимодальная приёмка,tasks/VIS-04.md
+MTP-01,single_spark,Terra,Luna,todo,QWN-09;GDN-05,Аудит MTP weights и алгоритма,tasks/MTP-01.md
+MTP-02,single_spark,Terra,Luna,todo,MTP-01,Exact speculative verification,tasks/MTP-02.md
+MTP-03,single_spark,Terra,Luna,todo,MTP-02,Откат полного hybrid state,tasks/MTP-03.md
+MTP-04,single_spark,Terra,Luna,todo,MTP-03,Измерить полезность MTP,tasks/MTP-04.md
+PERF-01,single_spark,Luna,Sol,todo,QWN-09;EXEC-05;MEM-06,Заморозить benchmark protocol,tasks/PERF-01.md
+PERF-02,single_spark,Luna,Sol,todo,PERF-01,Снять baseline одного Spark,tasks/PERF-02.md
+PERF-03,single_spark,Luna,Sol,todo,PERF-02,Локализовать реальные bottlenecks,tasks/PERF-03.md
+PERF-04,single_spark,Luna,Sol,todo,PERF-03,Сравнить candidate с baseline,tasks/PERF-04.md
+PERF-05,single_spark,Luna,Sol,todo,PERF-04,Устойчивость и практические примеры,tasks/PERF-05.md
+PKG-01,single_spark,Sol,Luna,todo,CORE-10;EXEC-06;MEM-07;AD-06;NN-06,Завершить самостоятельный wheel/SDK,tasks/PKG-01.md
+PKG-02,single_spark,Sol,Luna,todo,PKG-01,Закрыть CI и supply-chain риски,tasks/PKG-02.md
+PKG-03,single_spark,Sol,Luna,todo,PKG-02,Документация Apple-like workflow,tasks/PKG-03.md
+PKG-04,single_spark,Sol,Luna,todo,PKG-03;TRAIN-05;QTZ-04;VIS-04;MTP-04;PERF-05;FND-07,Полный single-Spark release audit,tasks/PKG-04.md
+PKG-05,single_spark,Sol,Luna,todo,PKG-04,Выпустить одноузловой release,tasks/PKG-05.md
+TP2-01,tp2_deferred,Sol,Luna,deferred,PKG-05,Открыть TP2 только после single-Spark release,tasks/TP2-01.md
+TP2-02,tp2_deferred,Sol,Luna,deferred,TP2-01,Инвентаризация QSFP и transport experiments,tasks/TP2-02.md
+TP2-03,tp2_deferred,Sol,Luna,deferred,TP2-02,Tensor sharding для Qwen3.8-27B,tasks/TP2-03.md
+TP2-04,tp2_deferred,Sol,Luna,deferred,TP2-03,Collectives и запуск одной модели на двух узлах,tasks/TP2-04.md
+TP2-05,tp2_deferred,Sol,Luna,deferred,TP2-04,Корректность и economics TP2,tasks/TP2-05.md
+TP2-06,tp2_deferred,Sol,Luna,deferred,TP2-05,Поставить опциональный distributed component,tasks/TP2-06.md

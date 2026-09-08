@@ -1,0 +1,10 @@
+{
+  "ready": [
+    {
+      "id": "FND-03",
+      "title": "Разрешить и проверить точные исходники",
+      "read": "planning/tasks/FND-03.md"
+    }
+  ],
+  "note": "No task is claimed or executed by this read-only command. Follow handoff/AGENT_PROTOCOL.md."
+}

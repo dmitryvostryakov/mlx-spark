@@ -1,0 +1,8 @@
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Debug"
+  MLX_SPARK_ENABLE_CUDA="OFF"
+
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /mnt/data/mlx-spark-handoff/build/host-debug

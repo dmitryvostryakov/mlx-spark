@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MLX-Spark task evidence record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "task",
+    "kind",
+    "implementation_commit",
+    "hardware",
+    "commands",
+    "observations",
+    "unrun"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "task": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "scaffold_cpu",
+        "native_cpu",
+        "gpu_operator",
+        "qwen_model",
+        "training",
+        "release_review"
+      ]
+    },
+    "implementation_commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hardware": {
+      "type": "object"
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "argv",
+          "exit_code",
+          "log_path"
+        ],
+        "properties": {
+          "argv": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "exit_code": {
+            "type": "integer"
+          },
+          "log_path": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unrun": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

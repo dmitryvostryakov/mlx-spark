@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "candidate_not_hardware_validated",
+  "observed_date": "2026-09-08",
+  "sources": {
+    "mlx": {
+      "kind": "git",
+      "repository": "ml-explore/mlx",
+      "revision": "365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5",
+      "ref_to_resolve": null,
+      "role": "proposed fork starting point; inspect before build"
+    },
+    "mlx_lm": {
+      "kind": "git",
+      "repository": "ml-explore/mlx-lm",
+      "revision": null,
+      "ref_to_resolve": "main",
+      "role": "reference/audit only; not a product runtime dependency"
+    },
+    "transformers": {
+      "kind": "git",
+      "repository": "huggingface/transformers",
+      "revision": null,
+      "ref_to_resolve": "main",
+      "role": "isolated independent oracle; audit Qwen3.8 support before use"
+    },
+    "qwen3_8_27b": {
+      "kind": "hf_model",
+      "repository": "Qwen/Qwen3.8-27B",
+      "revision": null,
+      "ref_to_resolve": "main",
+      "role": "metadata and model weights, separate approval before large download"
+    }
+  },
+  "rule": "Null revisions are deliberately unresolved; no production build or model benchmark may treat this file as a final lock."
+}

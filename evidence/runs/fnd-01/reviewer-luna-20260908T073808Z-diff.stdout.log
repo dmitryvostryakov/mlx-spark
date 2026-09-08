@@ -1,0 +1,4 @@
+scripts/check_local.sh
+tools/validate_plan.py
+validate_plan_whitespace_only=true
+base_validate_plan_python3_compile=true

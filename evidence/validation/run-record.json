@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "task": "BUNDLE-VALIDATION",
+  "kind": "scaffold_cpu",
+  "implementation_commit": null,
+  "hardware": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "DGX_Spark": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=evidence/validation/pytest.xml"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/validation/pytest.txt"
+    },
+    {
+      "argv": [
+        "cmake",
+        "--preset",
+        "host-debug"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/validation/cmake-configure.txt"
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "--preset",
+        "host-debug",
+        "--parallel",
+        "2"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/validation/cmake-build.txt"
+    },
+    {
+      "argv": [
+        "ctest",
+        "--preset",
+        "host-debug"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/validation/ctest.txt"
+    },
+    {
+      "argv": [
+        "python",
+        "tools/validate_plan.py"
+      ],
+      "exit_code": 0,
+      "log_path": "evidence/validation/plan.txt"
+    },
+    {
+      "argv": [
+        "python",
+        "tools/check_gate.py",
+        "--evidence",
+        "evidence/single-spark-v1.TEMPLATE.json"
+      ],
+      "exit_code": 2,
+      "log_path": "evidence/validation/expected-gate-rejection.json"
+    }
+  ],
+  "observations": [
+    "47 Python tests passed",
+    "1 C++ host CTest passed",
+    "91 tasks, acyclic",
+    "scaffold wheel installed in clean dependency-free venv",
+    "Expected template gate rejection (exit 2)"
+  ],
+  "unrun": [
+    "CUDA compilation and GPU execution",
+    "native framework build",
+    "Qwen model inference/training/performance",
+    "TP2"
+  ]
+}

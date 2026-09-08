@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "resolved_input_not_reviewed",
+  "observed_date": "2026-09-08",
+  "sources": {
+    "mlx": {
+      "kind": "git",
+      "repository": "ml-explore/mlx",
+      "revision": "365bd0fbac2e96631a1b2c4a34ca5a0771cdfde5",
+      "ref_to_resolve": null,
+      "role": "proposed fork starting point; inspect before build"
+    },
+    "mlx_lm": {
+      "kind": "git",
+      "repository": "ml-explore/mlx-lm",
+      "revision": "7fb4be44d560e5b74595210f83cb6003a57e52a7",
+      "ref_to_resolve": null,
+      "role": "reference/audit only; not a product runtime dependency"
+    },
+    "transformers": {
+      "kind": "git",
+      "repository": "huggingface/transformers",
+      "revision": "0df4ef369d324d4072e2910c673671eed4e92459",
+      "ref_to_resolve": null,
+      "role": "isolated independent oracle; audit Qwen3.8 support before use"
+    },
+    "qwen3_8_27b": {
+      "kind": "hf_model",
+      "repository": "Qwen/Qwen3.8-27B",
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "ref_to_resolve": null,
+      "role": "metadata and model weights, separate approval before large download"
+    }
+  },
+  "rule": "Exact revisions came from the retained discovery baseline and must still pass immutable metadata audit."
+}

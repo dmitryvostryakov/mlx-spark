@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "kind": "host_inventory_only",
+  "collected_at": "2026-09-08T07:12:30.612615+00:00",
+  "system": "Linux",
+  "machine": "x86_64",
+  "python": "3.13.5",
+  "libc": [
+    "glibc",
+    "2.41"
+  ],
+  "os_release": {
+    "PRETTY_NAME": "Debian GNU/Linux 13 (trixie)",
+    "VERSION_ID": "13",
+    "ID": "debian"
+  },
+  "memory": {
+    "MemTotal_bytes": 6236925952,
+    "MemAvailable_bytes": 5080588288,
+    "SwapTotal_bytes": 0,
+    "SwapFree_bytes": 0
+  },
+  "gpu_query": {
+    "status": "unavailable",
+    "command": "nvidia-smi"
+  },
+  "nvcc": {
+    "status": "unavailable",
+    "command": "nvcc"
+  },
+  "cmake": {
+    "status": "ok",
+    "returncode": 0,
+    "stdout": "cmake version 3.31.6\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+    "stderr": ""
+  },
+  "hardware_validation": "NOT_PERFORMED",
+  "sensitive_fields_omitted": [
+    "hostname",
+    "IP",
+    "MAC",
+    "UUID",
+    "serial",
+    "environment",
+    "process_list"
+  ],
+  "warnings": [
+    "nvidia-smi memory is not a UMA capacity guarantee",
+    "No driver or toolkit compatibility is inferred from a version string alone"
+  ]
+}

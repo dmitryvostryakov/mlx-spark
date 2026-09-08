@@ -1,0 +1,22 @@
+{
+  "single_spark_v1": [
+    "source_and_toolchain_lock",
+    "independent_native_package",
+    "public_api_parity",
+    "cpu_cuda_semantics",
+    "autodiff_vjp_jvp_vmap_higher_order",
+    "lazy_compile_streams",
+    "memory_lifetime_oom",
+    "generic_training_checkpoint_resume",
+    "qwen_bf16_text_state",
+    "qwen_lora_qlora",
+    "qwen_quantization_quality",
+    "qwen_vision_video",
+    "qwen_mtp_state_rollback",
+    "numeric_and_security_regressions",
+    "single_node_performance_no_material_regression",
+    "clean_install_docs_examples",
+    "independent_release_review"
+  ],
+  "tp2_unlock_rule": "Every single_spark_v1 check must pass; no implementation tasks for TP2 before this gate."
+}

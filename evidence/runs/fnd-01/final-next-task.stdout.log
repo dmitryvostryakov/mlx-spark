@@ -1,0 +1,10 @@
+{
+  "ready": [
+    {
+      "id": "FND-02",
+      "title": "Инвентаризировать выбранный Spark без изменений системы",
+      "read": "planning/tasks/FND-02.md"
+    }
+  ],
+  "note": "No task is claimed or executed by this read-only command. Follow handoff/AGENT_PROTOCOL.md."
+}

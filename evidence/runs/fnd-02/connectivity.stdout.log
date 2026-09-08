@@ -1,0 +1,5 @@
+selected_label=DGX2
+ssh_mode=batch_read_only
+exit_code=255
+category=name_resolution_failed
+explicit_hostname_mapping=false

@@ -1,0 +1,154 @@
+# Карта пакета MLX-Spark
+
+**Single Spark first · Qwen3.8-27B · Full framework · TP2 deferred**
+
+HTML-навигатор: [INDEX.html](INDEX.html). Статус проверки: [evidence/BUNDLE_VALIDATION.md](evidence/BUNDLE_VALIDATION.md).
+
+## Начать
+- [README.md](README.md)
+- [START_HERE.md](START_HERE.md)
+- [AGENTS.md](AGENTS.md)
+- [CONTEXT.md](CONTEXT.md)
+- [handoff/MASTER_PROMPT.md](handoff/MASTER_PROMPT.md)
+- [docs/PRODUCT_SPEC.md](docs/PRODUCT_SPEC.md)
+- [docs/MASTER_PLAN.md](docs/MASTER_PLAN.md)
+
+## Спецификации
+- [API_AND_PARITY](docs/API_AND_PARITY.md)
+- [ARCHITECTURE](docs/ARCHITECTURE.md)
+- [AUTODIFF_AND_TRAINING](docs/AUTODIFF_AND_TRAINING.md)
+- [BENCHMARK_PROTOCOL](docs/BENCHMARK_PROTOCOL.md)
+- [BUILD_AND_SUPPLY_CHAIN](docs/BUILD_AND_SUPPLY_CHAIN.md)
+- [GDN_KERNEL_AND_GRADIENTS](docs/GDN_KERNEL_AND_GRADIENTS.md)
+- [MASTER_PLAN](docs/MASTER_PLAN.md)
+- [MEMORY_AND_UMA](docs/MEMORY_AND_UMA.md)
+- [NUMERICAL_VALIDATION](docs/NUMERICAL_VALIDATION.md)
+- [PREREQUISITES_AND_ASSUMPTIONS](docs/PREREQUISITES_AND_ASSUMPTIONS.md)
+- [PRODUCT_SPEC](docs/PRODUCT_SPEC.md)
+- [QUANTIZATION](docs/QUANTIZATION.md)
+- [QWEN_3_8_27B](docs/QWEN_3_8_27B.md)
+- [RELEASE_AND_ACCEPTANCE](docs/RELEASE_AND_ACCEPTANCE.md)
+- [RISKS_AND_OPEN_QUESTIONS](docs/RISKS_AND_OPEN_QUESTIONS.md)
+- [SCAFFOLD_TRANSITION](docs/SCAFFOLD_TRANSITION.md)
+- [SECURITY_AND_OPERATIONS](docs/SECURITY_AND_OPERATIONS.md)
+- [SOURCES](docs/SOURCES.md)
+- [STATE_AND_CHECKPOINTS](docs/STATE_AND_CHECKPOINTS.md)
+- [TP2_DEFERRED](docs/TP2_DEFERRED.md)
+- [VISION_AND_MTP](docs/VISION_AND_MTP.md)
+
+## Передача агентам
+- [handoff/AGENT_PROTOCOL.md](handoff/AGENT_PROTOCOL.md)
+- [handoff/CHECKPOINT_TEMPLATE.md](handoff/CHECKPOINT_TEMPLATE.md)
+- [handoff/FIRST_SESSION.md](handoff/FIRST_SESSION.md)
+- [handoff/HANDOFF_TEMPLATE.md](handoff/HANDOFF_TEMPLATE.md)
+- [handoff/MASTER_PROMPT.md](handoff/MASTER_PROMPT.md)
+- [handoff/RECOVERY_AND_COMPACTION.md](handoff/RECOVERY_AND_COMPACTION.md)
+- [handoff/REVIEW_CHECKLIST.md](handoff/REVIEW_CHECKLIST.md)
+- [handoff/ROLES.md](handoff/ROLES.md)
+- [handoff/checkpoints/CURRENT.md](handoff/checkpoints/CURRENT.md)
+- [handoff/prompts/LUNA.md](handoff/prompts/LUNA.md)
+- [handoff/prompts/SOL.md](handoff/prompts/SOL.md)
+- [handoff/prompts/TERRA.md](handoff/prompts/TERRA.md)
+
+## Машиночитаемые контракты
+- [Task DAG](planning/tasks.json)
+- [Task table](planning/TASKS.csv)
+- [API seed — не полный inventory](planning/API_PARITY_SEED.csv)
+- [Scope](configs/project-scope.json)
+- [Release gates](configs/release-gates.json)
+- [Sources](configs/verified-sources.json)
+- [Candidate source lock](configs/source-lock.candidate.json)
+- [Current implementation status](STATUS.json)
+
+## Карточки задач
+- [FND-01: Зафиксировать одноузловой контракт и исходную точку](planning/tasks/FND-01.md) — Sol; single_spark
+- [FND-02: Инвентаризировать выбранный Spark без изменений системы](planning/tasks/FND-02.md) — Sol; single_spark
+- [FND-03: Разрешить и проверить точные исходники](planning/tasks/FND-03.md) — Sol; single_spark
+- [FND-04: Собрать неизменённый upstream baseline изолированно](planning/tasks/FND-04.md) — Sol; single_spark
+- [FND-05: Импортировать проверенное ядро в собственную кодовую базу](planning/tasks/FND-05.md) — Sol; single_spark
+- [FND-06: Создать независимые namespace и сборку](planning/tasks/FND-06.md) — Sol; single_spark
+- [FND-07: Заморозить API inventory и совместимость](planning/tasks/FND-07.md) — Sol; single_spark
+- [CORE-01: Массивы: владение, scalar и shape](planning/tasks/CORE-01.md) — Sol; single_spark
+- [CORE-02: Типы данных и продвижение типов](planning/tasks/CORE-02.md) — Sol; single_spark
+- [CORE-03: Индексирование и обновления](planning/tasks/CORE-03.md) — Sol; single_spark
+- [CORE-04: Элементные операции и reductions](planning/tasks/CORE-04.md) — Sol; single_spark
+- [CORE-05: Matmul и свёртки](planning/tasks/CORE-05.md) — Sol; single_spark
+- [CORE-06: Нормы и attention primitives](planning/tasks/CORE-06.md) — Sol; single_spark
+- [CORE-07: Random и явное состояние RNG](planning/tasks/CORE-07.md) — Sol; single_spark
+- [CORE-08: Linear algebra, FFT и остаток array API](planning/tasks/CORE-08.md) — Sol; single_spark
+- [CORE-09: Interoperability и export](planning/tasks/CORE-09.md) — Sol; single_spark
+- [CORE-10: Аудит полноты общего ядра](planning/tasks/CORE-10.md) — Sol; single_spark
+- [MEM-01: Проверить реальные memory capabilities GB10](planning/tasks/MEM-01.md) — Terra; single_spark
+- [MEM-02: Ввести явные allocation policies](planning/tasks/MEM-02.md) — Terra; single_spark
+- [MEM-03: Сделать stream-aware pool](planning/tasks/MEM-03.md) — Terra; single_spark
+- [MEM-04: Лимиты, memory pressure и OOM](planning/tasks/MEM-04.md) — Terra; single_spark
+- [MEM-05: Загрузка и запись без пиковых копий](planning/tasks/MEM-05.md) — Terra; single_spark
+- [MEM-06: Профиль UMA access patterns](planning/tasks/MEM-06.md) — Terra; single_spark
+- [MEM-07: Долговременный memory stress](planning/tasks/MEM-07.md) — Terra; single_spark
+- [EXEC-01: Lazy graph и границы materialization](planning/tasks/EXEC-01.md) — Sol; single_spark
+- [EXEC-02: Streams, events и ошибки async](planning/tasks/EXEC-02.md) — Sol; single_spark
+- [EXEC-03: Compile и ограничения специализации](planning/tasks/EXEC-03.md) — Sol; single_spark
+- [EXEC-04: CUDA Graph capture после корректной eager базы](planning/tasks/EXEC-04.md) — Sol; single_spark
+- [EXEC-05: Profiler hooks и numerical mode](planning/tasks/EXEC-05.md) — Sol; single_spark
+- [EXEC-06: Проверить композицию graph и обучения](planning/tasks/EXEC-06.md) — Sol; single_spark
+- [AD-01: Перенести reverse-mode и gradient contracts](planning/tasks/AD-01.md) — Sol; single_spark
+- [AD-02: Forward-mode JVP](planning/tasks/AD-02.md) — Sol; single_spark
+- [AD-03: vmap и batching rules](planning/tasks/AD-03.md) — Sol; single_spark
+- [AD-04: Higher-order differentiation](planning/tasks/AD-04.md) — Sol; single_spark
+- [AD-05: Activation checkpointing и state gradients](planning/tasks/AD-05.md) — Sol; single_spark
+- [AD-06: Проверить optimized primitive transforms](planning/tasks/AD-06.md) — Sol; single_spark
+- [NN-01: Module и parameter trees](planning/tasks/NN-01.md) — Sol; single_spark
+- [NN-02: Layers, initializers и losses](planning/tasks/NN-02.md) — Sol; single_spark
+- [NN-03: Optimizers и schedules](planning/tasks/NN-03.md) — Sol; single_spark
+- [NN-04: Checkpoint/resume общего обучения](planning/tasks/NN-04.md) — Sol; single_spark
+- [NN-05: Полное обучение маленьких произвольных сетей](planning/tasks/NN-05.md) — Sol; single_spark
+- [NN-06: Смешанная точность и gradient accumulation](planning/tasks/NN-06.md) — Sol; single_spark
+- [QWN-01: Аудит checkpoint и семантики архитектуры](planning/tasks/QWN-01.md) — Luna; single_spark
+- [QWN-02: Безопасный weight loader и manifest](planning/tasks/QWN-02.md) — Luna; single_spark
+- [QWN-03: Tokenizer, chat template и sampling contract](planning/tasks/QWN-03.md) — Luna; single_spark
+- [QWN-04: Собрать текстовую модель из общих модулей](planning/tasks/QWN-04.md) — Luna; single_spark
+- [QWN-05: Согласовать GDN и convolution state](planning/tasks/QWN-05.md) — Luna; single_spark
+- [QWN-06: Полное внимание и positional semantics](planning/tasks/QWN-06.md) — Luna; single_spark
+- [QWN-07: Генерация и lifecycle](planning/tasks/QWN-07.md) — Luna; single_spark
+- [QWN-08: Управление контекстом и logits](planning/tasks/QWN-08.md) — Luna; single_spark
+- [QWN-09: Подтвердить BF16 text correctness gate](planning/tasks/QWN-09.md) — Luna; single_spark
+- [GDN-01: Сверить математический oracle и масштабы](planning/tasks/GDN-01.md) — Terra; single_spark
+- [GDN-02: Скомпилировать и проверить CUDA reference](planning/tasks/GDN-02.md) — Terra; single_spark
+- [GDN-03: BF16 decode и numerical drift](planning/tasks/GDN-03.md) — Terra; single_spark
+- [GDN-04: Chunked prefill algorithm](planning/tasks/GDN-04.md) — Terra; single_spark
+- [GDN-05: Backward и transform интеграция](planning/tasks/GDN-05.md) — Terra; single_spark
+- [GDN-06: Профилирование и production dispatch](planning/tasks/GDN-06.md) — Terra; single_spark
+- [QTZ-01: Зафиксировать первый quant format](planning/tasks/QTZ-01.md) — Terra; single_spark
+- [QTZ-02: Converter с ограниченной памятью](planning/tasks/QTZ-02.md) — Terra; single_spark
+- [QTZ-03: Quantized matmul и training compatibility](planning/tasks/QTZ-03.md) — Terra; single_spark
+- [QTZ-04: Quality и performance comparison](planning/tasks/QTZ-04.md) — Terra; single_spark
+- [QTZ-05: Дополнительные precision formats по evidence](planning/tasks/QTZ-05.md) — Terra; single_spark
+- [TRAIN-01: LoRA BF16 end-to-end](planning/tasks/TRAIN-01.md) — Luna; single_spark
+- [TRAIN-02: LoRA checkpoint resume и reproducibility](planning/tasks/TRAIN-02.md) — Luna; single_spark
+- [TRAIN-03: QLoRA path](planning/tasks/TRAIN-03.md) — Luna; single_spark
+- [TRAIN-04: Полный training API audit](planning/tasks/TRAIN-04.md) — Luna; single_spark
+- [TRAIN-05: Документация обучающих режимов](planning/tasks/TRAIN-05.md) — Luna; single_spark
+- [VIS-01: Processor и visual token contract](planning/tasks/VIS-01.md) — Luna; single_spark
+- [VIS-02: Vision encoder и projector](planning/tasks/VIS-02.md) — Luna; single_spark
+- [VIS-03: Multimodal RoPE и интеграция](planning/tasks/VIS-03.md) — Luna; single_spark
+- [VIS-04: Видео и мультимодальная приёмка](planning/tasks/VIS-04.md) — Luna; single_spark
+- [MTP-01: Аудит MTP weights и алгоритма](planning/tasks/MTP-01.md) — Terra; single_spark
+- [MTP-02: Exact speculative verification](planning/tasks/MTP-02.md) — Terra; single_spark
+- [MTP-03: Откат полного hybrid state](planning/tasks/MTP-03.md) — Terra; single_spark
+- [MTP-04: Измерить полезность MTP](planning/tasks/MTP-04.md) — Terra; single_spark
+- [PERF-01: Заморозить benchmark protocol](planning/tasks/PERF-01.md) — Luna; single_spark
+- [PERF-02: Снять baseline одного Spark](planning/tasks/PERF-02.md) — Luna; single_spark
+- [PERF-03: Локализовать реальные bottlenecks](planning/tasks/PERF-03.md) — Luna; single_spark
+- [PERF-04: Сравнить candidate с baseline](planning/tasks/PERF-04.md) — Luna; single_spark
+- [PERF-05: Устойчивость и практические примеры](planning/tasks/PERF-05.md) — Luna; single_spark
+- [PKG-01: Завершить самостоятельный wheel/SDK](planning/tasks/PKG-01.md) — Sol; single_spark
+- [PKG-02: Закрыть CI и supply-chain риски](planning/tasks/PKG-02.md) — Sol; single_spark
+- [PKG-03: Документация Apple-like workflow](planning/tasks/PKG-03.md) — Sol; single_spark
+- [PKG-04: Полный single-Spark release audit](planning/tasks/PKG-04.md) — Sol; single_spark
+- [PKG-05: Выпустить одноузловой release](planning/tasks/PKG-05.md) — Sol; single_spark
+- [TP2-01: Открыть TP2 только после single-Spark release](planning/tasks/TP2-01.md) — Sol; tp2_deferred
+- [TP2-02: Инвентаризация QSFP и transport experiments](planning/tasks/TP2-02.md) — Sol; tp2_deferred
+- [TP2-03: Tensor sharding для Qwen3.8-27B](planning/tasks/TP2-03.md) — Sol; tp2_deferred
+- [TP2-04: Collectives и запуск одной модели на двух узлах](planning/tasks/TP2-04.md) — Sol; tp2_deferred
+- [TP2-05: Корректность и economics TP2](planning/tasks/TP2-05.md) — Sol; tp2_deferred
+- [TP2-06: Поставить опциональный distributed component](planning/tasks/TP2-06.md) — Sol; tp2_deferred

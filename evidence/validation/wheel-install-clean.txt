@@ -1,0 +1,4 @@
+WARNING: The directory '/home/oai/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Processing ./.artifacts/wheel/mlx_spark_scaffold-0.0.0.dev0-py3-none-any.whl
+Installing collected packages: mlx-spark-scaffold
+Successfully installed mlx-spark-scaffold-0.0.0.dev0

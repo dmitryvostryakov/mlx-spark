@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen3.8-27B",
+  "observed_date": "2026-09-08",
+  "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/config.json",
+  "snapshot_kind": "normalized JSON fixture structurally compared with exact-revision source bytes",
+  "immutable_revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+  "weights_downloaded": false,
+  "weights_downloaded_note": "No weight transfer was performed by FND-03; a complete pre-existing exact-revision cache was observed read-only on DGX2.",
+  "weights_cache_evidence": "evidence/runs/fnd-03/weight-cache-probe.stdout.log",
+  "hardware_validated": false,
+  "snapshot_sha256": "7718cd6bf3d6521d5550966d4ab8484fc81a01347d74b7e52163070f35ca7f35",
+  "snapshot_canonical_json_sha256": "137754ebd46991bec0c0d9e660dc98256be0b20f0e825b28c95c31de6142d041",
+  "exact_config_bytes": 4312,
+  "exact_config_sha256": "191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab",
+  "exact_config_canonical_json_sha256": "137754ebd46991bec0c0d9e660dc98256be0b20f0e825b28c95c31de6142d041",
+  "structurally_equal": true,
+  "changed_paths": [],
+  "required_before_model_tests": "Use the independently reviewed source lock. Runtime/model correctness, CUDA compatibility, and weight-byte integrity remain separate gates."
+}

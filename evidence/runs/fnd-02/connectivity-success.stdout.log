@@ -1,0 +1,5 @@
+selected_label=DGX2
+ssh_mode=batch_read_only
+exit_code=0
+category=connected
+remote_command_started=true

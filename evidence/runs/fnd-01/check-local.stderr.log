@@ -1,0 +1,4 @@
+  File "tools/validate_plan.py", line 18
+    if not (ROOT/f'planning/tasks/{i}.md').is_file():raise ValueError('missing task card '+i)
+                                        ^
+SyntaxError: invalid syntax

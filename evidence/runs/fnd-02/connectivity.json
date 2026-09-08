@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "task": "FND-02",
+  "selected_spark_label": "DGX2",
+  "collected_at": "2026-09-08T08:36:38Z",
+  "probe_scope": "direct_read_only_ssh_to_selected_node_only",
+  "result": {
+    "ssh_exit_code": 0,
+    "category": "connected",
+    "explicit_hostname_mapping": false,
+    "remote_command_started": true
+  },
+  "attempt_history": [
+    {
+      "at": "2026-09-08T08:14:40Z",
+      "category": "name_resolution_failed",
+      "ssh_exit_code": 255,
+      "remote_command_started": false
+    },
+    {
+      "at": "2026-09-08T08:36:38Z",
+      "category": "connected",
+      "ssh_exit_code": 0,
+      "remote_command_started": true
+    }
+  ],
+  "privacy": {
+    "raw_ssh_stderr_retained": false,
+    "reason": "AGENTS.md forbids hostnames and other host identifiers in logs",
+    "recorded_fields": [
+      "selected non-resolving project label",
+      "exit code",
+      "failure category",
+      "whether an explicit HostName mapping exists"
+    ]
+  },
+  "scope_guards": {
+    "network_scan_performed": false,
+    "second_node_contacted": false,
+    "remote_write_performed": false,
+    "system_change_performed": false,
+    "tp2_touched": false
+  }
+}

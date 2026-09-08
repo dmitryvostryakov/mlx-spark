@@ -1,0 +1,17 @@
+{
+  "checkpoint_implementation_matches": true,
+  "claim_implementation_matches": true,
+  "evidence_file_count": 101,
+  "framework_goal_retained": true,
+  "hostname_attribute_marker_count": 0,
+  "junit_or_other_xml_count": 0,
+  "real_host_id_candidate_count": 0,
+  "regression_source_present": true,
+  "run_implementation_matches": true,
+  "safe_pytest_text_exists": true,
+  "startup_has_311_guard": true,
+  "startup_uses_python3": true,
+  "submission_manifest_entries": 80,
+  "task_non_done": true,
+  "tp2_all_deferred": true
+}

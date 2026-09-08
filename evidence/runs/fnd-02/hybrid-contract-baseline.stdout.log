@@ -1,0 +1,15 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_hybrid_cgroup_prefers_explicit_v1_memory_controller ___________
+tests/test_doctor.py:170: in test_hybrid_cgroup_prefers_explicit_v1_memory_controller
+    assert context == {
+E   AssertionError: assert {'mount_point... 'version': 2} == {'mount_point... 'version': 1}
+E     
+E     Differing items:
+E     {'version': 2} != {'version': 1}
+E     {'relative_parts': ('user.slice', 'session.scope')} != {'relative_parts': ('job.scope',)}
+E     {'mount_point': PosixPath('/private/tmp/mlx-spark-fnd02-hybrid-contract-20260908/test_hybrid_cgroup_prefers_exp0/unified')} != {'mount_point': PosixPath('/private/tmp/mlx-spark-fnd02-hybrid-contract-20260908/test_hybrid_cgroup_prefers_exp0/memory')}
+E     Use -v to get more diff
+=========================== short test summary info ============================
+FAILED tests/test_doctor.py::test_hybrid_cgroup_prefers_explicit_v1_memory_controller
+1 failed in 0.16s
